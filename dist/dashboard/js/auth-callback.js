@@ -1,4 +1,4 @@
-function processAccessToken( accessToken, refreshToken, accessTokenExpiration ) {
+function processAuthTokens( accessToken, refreshToken, accessTokenExpiration ) {
     console.log( "           Access token : " + accessToken );
     console.log( "          Refresh token : " + refreshToken );
     console.log( "Access token expiration : " + accessTokenExpiration );
