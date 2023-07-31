@@ -27,19 +27,18 @@ function redirectToLogin() {
 if ( getAccessToken() === null ) {
     // This bro needs to log in
     redirectToLogin();
-} else {
-    const expireTime = getCookie("LETSVAL_TOKEN_EXPIRATION");
+} 
+const expireTime = getCookie("LETSVAL_TOKEN_EXPIRATION");
 
-    // If we don't know when it expires, assume it expired
-    if ( expireTime === null ) {
-        redirectToLogin();
-    }
-
-    const currentTime = new Date();
-
-    console.log( "   Current time: " + currentTime.toISOString() );
-
-    console.log( "Expiration time: " + expireTime );
-
-
+// If we don't know when it expires, assume it expired
+if ( expireTime === null ) {
+    redirectToLogin();
 }
+
+const currentTime = new Date();
+
+console.log( "   Current time: " + currentTime.toISOString() );
+
+const expireDate = new Date( expireTime );
+
+console.log( "Expiration time: " + expireDate.toISOString() );
