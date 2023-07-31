@@ -51,7 +51,7 @@ const tenMinutesInSeconds = 60 * 10;
 if ( secondsDelta < tenMinutesInSeconds ) {
     console.log("TODO: Need to refresh token, we're close to expired or expired" );
 } else {
-    const minutesRemaining = secondsDelta / 60;
+    const minutesRemaining = int(secondsDelta / 60);
     console.log("Do not need to refresh token; still valid for " + 
-        minutesRemaining + " seconds" );
+        minutesRemaining + " minutes" );
 }
