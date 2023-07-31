@@ -35,10 +35,23 @@ if ( expireTime === null ) {
     redirectToLogin();
 }
 
-const currentTime = new Date();
+const currentDate = new Date();
 
-console.log( "   Current time: " + currentTime.toISOString() );
+console.log( "   Current time: " + currentDate.toISOString() );
 
 const expireDate = new Date( expireTime );
 
 console.log( "Expiration time: " + expireDate.toISOString() );
+
+const secondsDelta = (expireDate - currentDate) / 1000;
+
+// If we are within 10 minutes of expiration, go ahead and use the 
+//      refresh token to go another token
+const tenMinutesInSeconds = 60 * 10;
+if ( secondsDelta < tenMinutesInSeconds ) {
+    console.log("TODO: Need to refresh token, we're close to expired or expired" );
+} else {
+    const minutesRemaining = secondsDelta / 60;
+    console.log("Do not need to refresh token; still valid for " + 
+        minutesRemaining + " seconds" );
+}
