@@ -16,13 +16,27 @@ function getCookie( cookieName ) {
 
 function getAccessToken() {
     const accessToken = getCookie( "LETSVAL_ACCESS_TOKEN" );
-    console.log( "Access token: " + accessToken );
+    //console.log( "Access token: " + accessToken );
     return accessToken;
+}
+
+function redirectToLogin() {
+    window.location = "https://letsvalidate.auth.us-east-2.amazoncognito.com/login?client_id=rme10ok7gdr32r7qgoei8tocv&response_type=code&scope=email+openid+phone&redirect_uri=https%3A%2F%2F24u4ki7bie.execute-api.us-east-2.amazonaws.com%2Foauth%2Fcallback";
 }
 
 if ( getAccessToken() === null ) {
     // This bro needs to log in
-    window.location = "https://letsvalidate.auth.us-east-2.amazoncognito.com/login?client_id=rme10ok7gdr32r7qgoei8tocv&response_type=code&scope=email+openid+phone&redirect_uri=https%3A%2F%2F24u4ki7bie.execute-api.us-east-2.amazonaws.com%2Foauth%2Fcallback";
+    redirectToLogin();
 } else {
     console.log("Found access token cookie. TODO: check current time vs token expiration");
+
+    // If we don't know when it expires, assume it expired
+    const expireTime = getCookie("LETSVAL_TOKEN_EXPIRATION");
+
+    if ( expireTime === null ) {
+        redirectToLogin();
+    }
+
+    console.log( "Expiration time: " + expireTime );
+
 }
