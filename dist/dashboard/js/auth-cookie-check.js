@@ -28,15 +28,18 @@ if ( getAccessToken() === null ) {
     // This bro needs to log in
     redirectToLogin();
 } else {
-    console.log("Found access token cookie. TODO: check current time vs token expiration");
-
-    // If we don't know when it expires, assume it expired
     const expireTime = getCookie("LETSVAL_TOKEN_EXPIRATION");
 
+    // If we don't know when it expires, assume it expired
     if ( expireTime === null ) {
         redirectToLogin();
     }
 
+    const currentTime = new Date();
+
+    console.log( "   Current time: " + currentTime.toISOString() );
+
     console.log( "Expiration time: " + expireTime );
+
 
 }
