@@ -37,11 +37,11 @@ if ( expireTime === null ) {
 
 const currentDate = new Date();
 
-console.log( "   Current time: " + currentDate.toISOString() );
+//console.log( "   Current time: " + currentDate.toISOString() );
 
 const expireDate = new Date( expireTime );
 
-console.log( "Expiration time: " + expireDate.toISOString() );
+//console.log( "Expiration time: " + expireDate.toISOString() );
 
 const secondsDelta = (expireDate - currentDate) / 1000;
 
@@ -52,6 +52,5 @@ if ( secondsDelta < tenMinutesInSeconds ) {
     console.log("TODO: Need to refresh token, we're close to expired or expired" );
 } else {
     const minutesRemaining = Math.trunc(secondsDelta / 60);
-    console.log("Do not need to refresh token; still valid for " + 
-        minutesRemaining + " minutes" );
+    console.log("Access token still valid for " + minutesRemaining + " minutes" );
 }
