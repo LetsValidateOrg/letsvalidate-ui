@@ -15,7 +15,7 @@ function processAuthTokens( accessToken, refreshToken, accessTokenExpiration ) {
 
 function cleanUpUrl() {
     // Overwrite the URL to remove all the code stuff
-    history.replaceState(null, null, "https://letsvaliate.org/dashboard" );
+    history.replaceState(null, null, "https://letsvalidate.org/dashboard" );
 
     console.log( "URL rewritten to remove tokens now that they are stored in cookies" );
 }
