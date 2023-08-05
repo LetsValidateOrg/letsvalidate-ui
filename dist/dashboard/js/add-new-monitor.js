@@ -15,7 +15,7 @@ function checkAddNewUrlInputActions() {
      *      - No periods in final two characters
      */
     const finalTwoCharacters = newUrlText.substring(newUrlText.length - 2)
-    console.log("Final two characters: " + finalTwoCharacters);
+    //console.log("Final two characters: " + finalTwoCharacters);
     const newTextIsValidUrl = (
         (newUrlText.length >= 5) && 
         (newUrlText.includes(".") === true) &&
