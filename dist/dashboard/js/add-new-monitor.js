@@ -19,7 +19,17 @@ function scrubUrl() {
 function addNewMonitorUrl() {
     console.log("Button clicked to add new URL to monitor");
 
-    const newUrl = scrubUrl();
+    const scrubbedUrl = scrubUrl();
+
+    // Update the input field and disable both it and the add button
+    document.getElementById("input_new_monitor_url").value = scrubbedUrl;
+    document.getElementById("input_new_monitor_url").disabled = true;
+    document.getElementById("button_add_new_monitor").disabled = true;
+
+    const urlWithPrefix = "https://" + scrubbedUrl;
+
+    console.log("Going to submit URL \"" + urlWithPrefix + 
+        "\" to backend API" );
 }
 
 function checkAddNewUrlInputActions() {
