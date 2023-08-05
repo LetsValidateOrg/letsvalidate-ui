@@ -52,13 +52,26 @@ function checkAddNewUrlInputActions() {
         (finalTwoCharacters.includes(".") === false)
     );
 
+    // If we have a valid URL, then check if port number is valid
+    const portNumber = document.getElementById("input_new_monitor_port").value.parseInt();
+
+    const isValidPortNumber = ((portNumber >= 1) && (portNumber <= 65535));
+
     // if the button is currently disabled, see if we can enable it
-    if ( (isButtonDisabled === true) && (newTextIsValidUrl === true) ) {
+    if ( 
+        (isButtonDisabled === true) && 
+        (newTextIsValidUrl === true) &&
+        (isValidPortNumber === true) 
+    ) {
         document.getElementById("button_add_new_monitor").disabled = false;
     }
 
     // if the button is currently enabled, let's see if we should disable it
-    else if ( (isButtonDisabled === false) && (newTextIsValidUrl === false) ) {
+    else if ( 
+        (isButtonDisabled === false) && 
+        ((newTextIsValidUrl === false) ||
+        (isValidPortNumber === false))
+    ) {
         document.getElementById("button_add_new_monitor").disabled = true; 
     }
 }
