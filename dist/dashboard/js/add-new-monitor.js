@@ -17,7 +17,7 @@ function checkAddNewUrlInputActions() {
     const finalTwoCharacters = newUrlText.substring(newUrlText.length - 2)
     console.log("Final two characters: " + finalTwoCharacters);
     const newTextIsValidUrl = (
-        (newUrlText.length > 5) && 
+        (newUrlText.length >= 5) && 
         (newUrlText.includes(".") === true) &&
         (finalTwoCharacters.includes(".") === false)
     );
