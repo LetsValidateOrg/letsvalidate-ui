@@ -76,13 +76,28 @@ function checkAddNewUrlInputActions() {
     }
 }
 
+function sanityCheckPortNumberField() {
+    let portNumber = document.getElementById("input_new_monitor_port").value;
+
+    // Drop anything that's not 0-9
+    const allDigits = myString.replace(/\D/g,'');
+
+    // Change the value if it's different after we scrub it
+    if ( portNumber != allDigits ) {
+        document.getElementById("input_new_monitor_port").value = allDigits;
+    }
+
+    // See if we need to enable/diable the form button
+    checkAddNewUrlInputActions();
+}
+
 function addEventListeners() {
     document.getElementById("button_add_new_monitor").addEventListener(
         "click", addNewMonitorUrl );
     document.getElementById("input_new_monitor_url").addEventListener(
         "input", checkAddNewUrlInputActions );
     document.getElementById("input_new_monitor_port").addEventListener(
-        "input", checkAddNewUrlInputActions );
+        "input", sanityCheckPortNumberField );
 }
 
 addEventListeners();
