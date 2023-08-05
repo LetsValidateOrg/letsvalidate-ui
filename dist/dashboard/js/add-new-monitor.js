@@ -80,7 +80,7 @@ function sanityCheckPortNumberField() {
     let portNumber = document.getElementById("input_new_monitor_port").value;
 
     // Drop anything that's not 0-9
-    const allDigits = myString.replace(/\D/g,'');
+    const allDigits = portNumber.replace(/\D/g,'');
 
     // Change the value if it's different after we scrub it
     if ( portNumber != allDigits ) {
