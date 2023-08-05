@@ -32,7 +32,7 @@ function addNewMonitorUrl() {
     const portNumber = parseInt(document.getElementById("input_new_monitor_port").value);
 
     if ( portNumber != 443 ) {
-        fullUrl = urlWithPrefix + ":" + portNumber;
+        fullUrl = fullUrl + ":" + portNumber;
     }
 
     console.log("Going to submit URL \"" + fullUrl + "\" to backend API" );
