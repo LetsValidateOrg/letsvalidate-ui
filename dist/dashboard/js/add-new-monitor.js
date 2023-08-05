@@ -1,5 +1,25 @@
+function scrubUrl() {
+    // Trim leading/trailing whitespace
+    let scrubbedUrl = document.getElementById("input_new_monitor_url").value.trim();
+
+    // Strip prefixes we don't allow/need
+    const prefixesToRemove = ["http://", "https://"];
+    for ( currPrefix of prefixesToRemove ) {
+        if ( scrubbedUrl.startsWith(currPrefix) ) {
+            scrubbedUrl = scrubbedUrl.substring(currPrefix.length);
+            console.log("Found prefix to remove \"" + currPrefix + 
+                "\", after removing it have \"" + scrubbedUrl + "\"" );
+        }
+    } 
+
+    console.log("Returning scrubbed url \"" + scrubbedUrl + "\"" );
+
+    return scrubbedUrl;
+}
 function addNewMonitorUrl() {
     console.log("Button clicked to add new URL to monitor");
+
+    const newUrl = scrubUrl();
 }
 
 function checkAddNewUrlInputActions() {
