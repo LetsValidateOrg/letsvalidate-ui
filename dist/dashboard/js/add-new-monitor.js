@@ -14,10 +14,12 @@ function checkAddNewUrlInputActions() {
      *      - At least 1 of the characters is a period
      *      - No periods in final two characters
      */
+    const finalTwoCharacters = newUrlText.substring(newUrlText.length - 3)
+    console.log("Final two characters: " + finalTwoCharacters);
     const newTextIsValidUrl = (
         (newUrlText.length > 5) && 
         (newUrlText.includes(".") === true) &&
-        (newUrlText.substring(newUrlText.length - 1).includes(".") === false)
+        (finalTwoCharacters.includes(".") === false)
     );
 
     // if the button is currently disabled, see if we can enable it
