@@ -1,35 +1,41 @@
-function scrubUrl() {
+function scrubHostnameOrIp() {
     // Trim leading/trailing whitespace
-    let scrubbedUrl = document.getElementById("input_new_monitor_url").value.trim();
+    let scrubbedHostnameOrIp = document.getElementById("input_new_monitor_url").value.trim();
 
     // Strip prefixes we don't allow/need
     const prefixesToRemove = ["http://", "https://"];
     for ( currPrefix of prefixesToRemove ) {
-        if ( scrubbedUrl.startsWith(currPrefix) ) {
-            scrubbedUrl = scrubbedUrl.substring(currPrefix.length);
+        if ( scrubbedHostnameOrIp.startsWith(currPrefix) ) {
+            scrubbedHostnameOrIp = scrubbedHostnameOrIp.substring(currPrefix.length);
             console.log("Found prefix to remove \"" + currPrefix + 
-                "\", after removing it have \"" + scrubbedUrl + "\"" );
+                "\", after removing it have \"" + scrubbedHostnameOrIp + "\"" );
         }
     } 
 
-    console.log("Returning scrubbed url \"" + scrubbedUrl + "\"" );
+    console.log("Returning scrubbed hostname/IP \"" + scrubbedHostnameOrIp + "\"" );
 
-    return scrubbedUrl;
+    return scrubbedHostnameOrIp;
 }
 function addNewMonitorUrl() {
     console.log("Button clicked to add new URL to monitor");
 
-    const scrubbedUrl = scrubUrl();
+    const scrubbedHost = scrubHostnameOrIp();
 
     // Update the input field and disable both it and the add button
-    document.getElementById("input_new_monitor_url").value = scrubbedUrl;
+    document.getElementById("input_new_monitor_url").value = scrubbedHost;
     document.getElementById("input_new_monitor_url").disabled = true;
+    document.getElementById("input_new_monitor_port").disabled = true;
     document.getElementById("button_add_new_monitor").disabled = true;
 
-    const urlWithPrefix = "https://" + scrubbedUrl;
+    let fullUrl = "https://" + scrubbedHost;
 
-    console.log("Going to submit URL \"" + urlWithPrefix + 
-        "\" to backend API" );
+    const portNumber = parseInt(document.getElementById("input_new_monitor_port").value);
+
+    if ( portNumber != 443 ) {
+        fullUrl = urlWithPrefix + ":" + portNumber;
+    }
+
+    console.log("Going to submit URL \"" + fullUrl + "\" to backend API" );
 }
 
 function checkAddNewUrlInputActions() {
