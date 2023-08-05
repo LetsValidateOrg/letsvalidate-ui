@@ -12,13 +12,10 @@ function scrubHostnameOrIp() {
         }
     } 
 
-    console.log("Returning scrubbed hostname/IP \"" + scrubbedHostnameOrIp + "\"" );
-
     return scrubbedHostnameOrIp;
 }
-function addNewMonitorUrl() {
-    console.log("Button clicked to add new URL to monitor");
 
+function addNewMonitorUrl() {
     const scrubbedHost = scrubHostnameOrIp();
 
     // Update the input field and disable both it and the add button
