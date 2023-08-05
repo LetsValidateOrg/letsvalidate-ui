@@ -8,7 +8,17 @@ function checkAddNewUrlInputActions() {
 
     const isButtonDisabled = document.getElementById("button_add_new_monitor").disabled;
 
-    const newTextIsValidUrl = ((newUrlText.length > 5) && (newUrlText.includes(".")));
+    /**
+     * Needs all to be true:
+     *      - 5+ characters
+     *      - At least 1 of the characters is a period
+     *      - No periods in final two characters
+     */
+    const newTextIsValidUrl = (
+        (newUrlText.length > 5) && 
+        (newUrlText.includes(".") === true) &&
+        (newUrlText.substring(newUrlText.length - 2).includes(".") === false)
+    );
 
     // if the button is currently disabled, see if we can enable it
     if ( (isButtonDisabled === true) && (newTextIsValidUrl === true) ) {
