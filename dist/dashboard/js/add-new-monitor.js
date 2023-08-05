@@ -81,6 +81,8 @@ function addEventListeners() {
         "click", addNewMonitorUrl );
     document.getElementById("input_new_monitor_url").addEventListener(
         "input", checkAddNewUrlInputActions );
+    document.getElementById("input_new_monitor_port").addEventListener(
+        "input", checkAddNewUrlInputActions );
 }
 
 addEventListeners();
