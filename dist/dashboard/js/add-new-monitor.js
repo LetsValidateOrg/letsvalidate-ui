@@ -53,7 +53,7 @@ function checkAddNewUrlInputActions() {
     );
 
     // If we have a valid URL, then check if port number is valid
-    const portNumber = document.getElementById("input_new_monitor_port").value.parseInt();
+    const portNumber = parseInt(document.getElementById("input_new_monitor_port").value);
 
     const isValidPortNumber = ((portNumber >= 1) && (portNumber <= 65535));
 
