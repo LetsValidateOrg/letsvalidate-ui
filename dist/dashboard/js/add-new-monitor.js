@@ -17,7 +17,7 @@ function checkAddNewUrlInputActions() {
     const newTextIsValidUrl = (
         (newUrlText.length > 5) && 
         (newUrlText.includes(".") === true) &&
-        (newUrlText.substring(newUrlText.length - 2).includes(".") === false)
+        (newUrlText.substring(newUrlText.length - 1).includes(".") === false)
     );
 
     // if the button is currently disabled, see if we can enable it
