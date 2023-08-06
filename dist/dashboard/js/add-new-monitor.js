@@ -1,3 +1,6 @@
+const monitoredUrlApiEndpoint = "https://wvyfbi1fnf.execute-api.us-east-2.amazonaws.com/api/v001/monitored_url";
+
+
 function scrubHostnameOrIp() {
     // Trim leading/trailing whitespace
     let scrubbedHostnameOrIp = document.getElementById("input_new_monitor_url").value.trim();
@@ -15,7 +18,7 @@ function scrubHostnameOrIp() {
     return scrubbedHostnameOrIp;
 }
 
-function addNewMonitorUrl() {
+async function addNewMonitorUrl() {
     const scrubbedHost = scrubHostnameOrIp();
 
     // Update the input field and disable both it and the add button
@@ -33,6 +36,27 @@ function addNewMonitorUrl() {
     }
 
     console.log("Going to submit URL \"" + fullUrl + "\" to backend API" );
+
+    const constructedRequestUrl = monitoredUrlApiEndpoint + "?" + new URLSearchParams(
+        {
+            url         : fullUrl
+        }
+    );
+
+    console.log("Constructed URL: " + constructedRequestUrl);
+
+    const fetchResponse = await fetch( constructedRequestUrl,
+        {
+            headers: {
+                "Authorization": getAccessToken()
+            },
+
+            method: "POST"
+        });
+
+    const jsonBody = await fetchResponse.json();
+
+    console.log( "Got the following content back:\n" + JSON.stringify(jsonBody) );
 }
 
 function checkAddNewUrlInputActions() {
