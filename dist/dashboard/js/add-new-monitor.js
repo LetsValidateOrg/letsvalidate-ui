@@ -45,10 +45,12 @@ async function addNewMonitorUrl() {
 
     console.log("Constructed URL: " + constructedRequestUrl);
 
+    const accessToken = getAccessToken();
+
     const fetchResponse = await fetch( constructedRequestUrl,
         {
             headers: {
-                "Authorization": getAccessToken()
+                "Authorization": accessToken
             },
 
             method: "POST"
