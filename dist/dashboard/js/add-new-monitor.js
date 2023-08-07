@@ -47,6 +47,8 @@ async function addNewMonitorUrl() {
 
     const accessToken = getAccessToken();
 
+    const startTime = Date.now();
+
     const fetchResponse = await fetch( constructedRequestUrl,
         {
             headers: {
@@ -55,6 +57,12 @@ async function addNewMonitorUrl() {
 
             method: "POST"
         });
+    
+    const endTime = Date.now();
+
+    const fetchTimeInMs = endTime - startTime;
+
+    console.log("API endpoint response took " + fetchtimeInMs + " ms");
 
     const jsonBody = await fetchResponse.json();
 
