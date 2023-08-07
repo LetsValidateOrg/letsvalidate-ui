@@ -62,7 +62,7 @@ async function addNewMonitorUrl() {
 
     const fetchTimeInMs = endTime - startTime;
 
-    console.log("API endpoint response took " + fetchtimeInMs + " ms");
+    console.log("API endpoint response took " + fetchTimeInMs + " ms");
 
     const jsonBody = await fetchResponse.json();
 
