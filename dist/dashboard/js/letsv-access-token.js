@@ -16,6 +16,6 @@ function getCookie( cookieName ) {
 
 function getAccessToken() {
     const accessToken = getCookie( "LETSVAL_ACCESS_TOKEN" );
-    console.log( "Access token: " + accessToken );
+    //console.log( "Access token: " + accessToken );
     return accessToken;
 }

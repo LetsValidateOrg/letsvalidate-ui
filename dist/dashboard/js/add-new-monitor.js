@@ -43,7 +43,7 @@ async function addNewMonitorUrl() {
         }
     );
 
-    console.log("Constructed URL: " + constructedRequestUrl);
+    //console.log("Constructed URL: " + constructedRequestUrl);
 
     const accessToken = getAccessToken();
 
