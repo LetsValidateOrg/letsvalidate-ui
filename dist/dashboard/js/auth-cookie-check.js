@@ -21,7 +21,7 @@ function getAccessToken() {
 }
 
 function redirectToLogin() {
-    window.location = "https://letsvalidate.auth.us-east-2.amazoncognito.com/login?client_id=rme10ok7gdr32r7qgoei8tocv&response_type=code&scope=email+openid+phone&redirect_uri=https%3A%2F%2F24u4ki7bie.execute-api.us-east-2.amazonaws.com%2Foauth%2Fcallback";
+    window.location = "https://letsvalidate.auth.us-east-2.amazoncognito.com/login?client_id=rme10ok7gdr32r7qgoei8tocv&response_type=code&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fwvyfbi1fnf.execute-api.us-east-2.amazonaws.com%2Foauth%2Fcallback"
 }
 
 if ( getAccessToken() === null ) {
