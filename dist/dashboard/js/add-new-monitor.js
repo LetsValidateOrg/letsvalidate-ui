@@ -64,9 +64,18 @@ async function addNewMonitorUrl() {
 
     console.log("API endpoint response took " + fetchTimeInMs + " ms");
 
-    const jsonBody = await fetchResponse.json();
+    // If there's a 200, read the body
+    if ( fetchResponse.status === 200 ) {
+        const jsonBody = await fetchResponse.json();
 
-    console.log( "Got the following content back:\n" + JSON.stringify(jsonBody) );
+        console.log( "Got the following content back:\n" + JSON.stringify(jsonBody) );
+    } else if ( fetchResponse.status === 204 ) {
+        console.log("This user was already monitoring this site, nothing to do here");
+    } else if ( fetchResponse.ok === false ) {
+        console.log("Got an non-200 response back from API endpoint");
+    } else {
+        console.log("Unknown response status: " + fetchResponse.status );
+    }
 }
 
 function checkAddNewUrlInputActions() {
