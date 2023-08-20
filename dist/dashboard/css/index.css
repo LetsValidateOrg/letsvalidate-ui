@@ -18,6 +18,11 @@ table#table_expiring_certs {
     border: none;
 }
 
+table#table_expiring_certs tr:nth-child(2n+1) {
+    background: #c0c0c0;
+}
+
+
 tr.tr_expiring_certs_header {
     background: #505050;
     color: white;
@@ -34,8 +39,4 @@ table#table_expiring_certs td {
     padding-right: 0.2in;
     padding-top: 0.05in;
     padding-bottom: 0.05in;
-}
-
-table#table_expiring_certs tr:nth-child(2n+1) {
-    background: #c0c0c0;
 }
