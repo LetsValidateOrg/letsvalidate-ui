@@ -40,9 +40,12 @@ td.td_center {
     text-align: center;
 }
 
+td.td_bottom {
+    vertical-align: bottom;
+}
+
 tr.tr_expiring_certs_header td {
     background: #505050;
     color: white;
     font-weight: bold;
-    vertical-align: bottom;
 }
