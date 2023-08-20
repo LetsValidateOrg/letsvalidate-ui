@@ -40,7 +40,7 @@ td.td_center {
     text-align: center;
 }
 
-tr.tr_expiring_certs_header {
+tr.tr_expiring_certs_header td {
     background: #505050;
     color: white;
     font-weight: bold;
