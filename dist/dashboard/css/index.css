@@ -15,6 +15,7 @@ table {
 table#table_expiring_certs {
     border: 1px solid;
     border-collapse: collapse;
+    font-size: small;
 }
 
 tr.tr_expiring_certs_header {
