@@ -27,6 +27,7 @@ tr.tr_expiring_certs_header {
     background: #505050;
     color: white;
     font-weight: bold;
+    vertical-align: bottom;
 }
 
 table#table_expiring_certs td {
