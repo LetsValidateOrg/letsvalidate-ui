@@ -24,6 +24,7 @@ tr.tr_expiring_certs_header {
 
 table#table_expiring_certs td {
     border: none;
+    border-collapse; collapse;
 }
 
 table#table_expiring_certs td {
