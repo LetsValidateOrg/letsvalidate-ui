@@ -23,3 +23,10 @@ tr.tr_expiring_certs_header {
     color: white;
     font-weight: bold;
 }
+
+tr.tr_expiring_certs_header > td {
+    padding-left: 0.1in;
+    padding-right: 0.1in;
+    padding-top: 0.05in;
+    padding-bottom: 0.05in;
+}
