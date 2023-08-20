@@ -8,6 +8,17 @@ div {
     margin-top: 0.5in;
 }
 
-table#table_add_new_monitor {
+table {
     margin-left: 0.5in;
+}
+
+table#table_expiring_certs {
+    border: 1px solid;
+    border-collapse: collapse;
+}
+
+tr.tr_expiring_certs_header {
+    background: #505050;
+    color: white;
+    font-weight: bold;
 }
