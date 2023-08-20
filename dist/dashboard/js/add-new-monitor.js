@@ -1,5 +1,17 @@
 const monitoredUrlApiEndpoint = "https://wvyfbi1fnf.execute-api.us-east-2.amazonaws.com/api/v001/monitored_url";
 
+function clearResetAddMonitor() {
+    let hostnameInput   = document.getELementById("input_new_monitor_url");
+    let portInput       = document.getElementById("input_new_monitor_port");
+    let monitorButton   = document.getElementById("button_add_new_monitor");
+
+    hostnameInput.value = "";
+    portInput.value = "443";
+    hostnameInput.disabled  = false;
+    portInput.disabled      = false;
+    monitorButton.disabled  = false;
+}
+
 
 function scrubHostnameOrIp() {
     // Trim leading/trailing whitespace
@@ -68,7 +80,8 @@ async function addNewMonitorUrl() {
     if ( fetchResponse.status === 200 ) {
         const jsonBody = await fetchResponse.json();
 
-        console.log( "Got the following content back:\n" + JSON.stringify(jsonBody) );
+        console.log( "JS needs to cache this new data until Worker KV becomes eventually consistent:\n" + 
+            JSON.stringify(jsonBody) );
     } else if ( fetchResponse.status === 204 ) {
         console.log("This user was already monitoring this site, nothing to do here");
     } else if ( fetchResponse.ok === false ) {
@@ -76,6 +89,9 @@ async function addNewMonitorUrl() {
     } else {
         console.log("Unknown response status: " + fetchResponse.status );
     }
+
+    // Clear out form data and get it ready again
+    clearResetAddMonitor();
 }
 
 function checkAddNewUrlInputActions() {
