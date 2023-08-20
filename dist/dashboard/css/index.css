@@ -32,6 +32,7 @@ tr.tr_expiring_certs_header {
 table#table_expiring_certs td {
     border: none;
     border-collapse; collapse;
+    vertical-align: top;
 }
 
 table#table_expiring_certs td {
@@ -39,4 +40,8 @@ table#table_expiring_certs td {
     padding-right: 0.2in;
     padding-top: 0.05in;
     padding-bottom: 0.05in;
+}
+
+td.center {
+    text-align: center;
 }
