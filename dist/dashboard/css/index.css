@@ -7,3 +7,7 @@ div {
     margin-left: 0.5in;
     margin-top: 0.5in;
 }
+
+table#table_add_new_monitor {
+    margin-left: 0.5in;
+}
