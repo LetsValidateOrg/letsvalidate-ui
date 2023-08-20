@@ -23,7 +23,6 @@ tr.tr_expiring_certs_header {
 }
 
 table#table_expiring_certs td {
-    border: 1px solid;
     border-collapse: collapse;
 }
 
