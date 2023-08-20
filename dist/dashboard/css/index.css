@@ -35,3 +35,7 @@ table#table_expiring_certs td {
     padding-top: 0.05in;
     padding-bottom: 0.05in;
 }
+
+table#table_expiring_certs tr:nth-child(2n+1) {
+    background-color: #c0c0c0;
+}
