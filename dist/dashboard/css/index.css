@@ -18,17 +18,10 @@ table#table_expiring_certs {
     border: none;
 }
 
-table#table_expiring_certs tr:nth-child(2n+3) {
+table#table_expiring_certs tr:nth-child(2n+4) {
     background: #e0e0e0;
 }
 
-
-tr.tr_expiring_certs_header {
-    background: #505050;
-    color: white;
-    font-weight: bold;
-    vertical-align: bottom;
-}
 
 table#table_expiring_certs td {
     border: none;
@@ -45,4 +38,11 @@ table#table_expiring_certs td {
 
 td.td_center {
     text-align: center;
+}
+
+tr.tr_expiring_certs_header {
+    background: #505050;
+    color: white;
+    font-weight: bold;
+    vertical-align: bottom;
 }
