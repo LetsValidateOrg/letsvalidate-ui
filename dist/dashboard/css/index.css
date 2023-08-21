@@ -49,3 +49,8 @@ tr.tr_expiring_certs_header td {
     color: white;
     font-weight: bold;
 }
+
+td.td_redbg {
+    color: white;
+    background: #500000;
+}
