@@ -18,7 +18,7 @@ table#table_expiring_certs {
     border: none;
 }
 
-table#table_expiring_certs tr:nth-child(2n+4) {
+table#table_expiring_certs tr:nth-child(2n+3) {
     background: #e0e0e0;
 }
 
