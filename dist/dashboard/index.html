@@ -45,50 +45,40 @@
             <table id="table_expiring_certs">
                 <tr class="tr_expiring_certs_header">
                     <td class="td_bottom" rowspan="2" colspan="2" style="vertical-align: bottom;">URL</td>
-                    <td class="td_center" colspan="2">Cert Expiration</td>
+                    <td class="td_center" rowspan="2" style="vertical-align: bottom;">Cert Expiration</td>
                     <td>&nbsp;</td>
-                    <td class="td_center" colspan="4">Alerts</td>
+                    <td class="td_center" colspan="2">Alerts</td>
                     <td rowspan="2">&nbsp;</td>
                     <td colspan="2" rowspan="2" class="td_center" style="align: center; vertical-align: bottom;">Actions</td>
                 </tr>
                 <tr class="tr_expiring_certs_header">
-                    <td class="td_center">Date</td>
-                    <td class="td_center">Days From Now</td>
                     <td>&nbsp;</td>
                     <td class="td_center">Last</td>
-                    <td class="td_center">Days Since Last</td>
                     <td class="td_center">Next</td>
-                    <td class="td_center">Days To Next</td>
                 </tr>
 
                 <tr>
                     <td><a href="https://expiresreallysoon.test.letsvalidate.org">https://expiresreallysoon.test.letsvalidate.org</a></td>
                     <td>&nbsp;</td>
-                    <td class="td_center">2023-09-01 23:59 UTC</td>
-                    <td class="td_center">10</td>
+                    <td class="td_center">10 days from now (2023-09-01 23:59 UTC)</td>
                     <td>&nbsp;</td>
-                    <td class="td_center">2023-08-10 00:09 UTC</td>
-                    <td class="td_center">10</td>
-                    <td class="td_center">[alert muted]</td>
+                    <td class="td_center">10 days ago (2023-08-10 00:09 UTC)</td>
                     <td class="td_center">[alert muted]</td>
                     <td>&nbsp;</td>
-                    <td class="td_center">[unmute alert]</td>
-                    <td class="td_center">[delete]</td>
+                    <td class="td_center">[unmute alert icon]</td>
+                    <td class="td_center">[trashcan icon]</td>
                 </tr>
 
                 <tr>
                     <td><a href="https://expiressoon.test.letsvalidate.org">https://expiressoon.test.letsvalidate.org</a></td>
                     <td>&nbsp;</td>
-                    <td class="td_center">2023-09-15 23:59 UTC</td>
-                    <td class="td_center">25</td>
+                    <td class="td_center">25 days from now (2023-09-15 23:59 UTC)</td>
                     <td>&nbsp;</td>
-                    <td class="td_center">2023-08-15 00:02 UTC</td>
-                    <td class="td_center">5</td>
-                    <td class="td_center">2023-09-01 00:00 UTC</td>
-                    <td class="td_center">10</td>
+                    <td class="td_center">5 days ago (2023-08-15 00:02 UTC)</td>
+                    <td class="td_center">10 days from now (2023-09-01 00:00 UTC)</td>
                     <td>&nbsp;</td>
-                    <td class="td_center">[mute alert]</td>
-                    <td class="td_center">[delete]</td>
+                    <td class="td_center">[mute alert icon]</td>
+                    <td class="td_center">[trashcan icon]</td>
                 </tr>
             </table>
         </div>
