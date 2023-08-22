@@ -1,6 +1,6 @@
 let certsRetrieved = false;
 
-const uiApiEndpoint = "https://letsvalidate-webui-api.publicntp.workers.dev/api/v001/monitored-certificates";
+const getMonitoredCertsEndpoint = "https://letsvalidate-webui-api.publicntp.workers.dev/api/v001/monitored-certificates";
 
 async function requestMonitoredCerts() {
     const startTime = Date.now();
