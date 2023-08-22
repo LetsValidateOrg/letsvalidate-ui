@@ -5,8 +5,6 @@ const uiApiEndpoint = "https://letsvalidate-webui-api.publicntp.workers.dev/api/
 async function requestMonitoredCerts() {
     const startTime = Date.now();
 
-    const fetchTimeInMs = endTime - startTime;
-
     const fetchResponse = await fetch( getMonitoredCertsEndpoint,
         {
             headers : { 'Authorization': 'Bearer ' + getAccessToken() },
