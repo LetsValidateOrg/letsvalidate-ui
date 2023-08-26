@@ -104,8 +104,6 @@ async function addNewMonitorUrl() {
             let urlText = document.createTextNode( currRowEntry.url );
             urlCell.appendChild(urlText);
 
-            /*
-
             // empty -- for spacing
             newTableRow.insertCell();
 
@@ -113,6 +111,8 @@ async function addNewMonitorUrl() {
             let expirationText = document.createTextNode( createTimeDeltaString(currRowEntry.cert_expires) );
             expirationCell.classList.add("td_center");
             expirationCell.appendChild( expirationText );
+
+            /*
 
             let lastCheckCell = newTableRow.insertCell();
             let lastCheckText = document.createTextNode( createTimeDeltaString(currRowEntry.last_checked) );
