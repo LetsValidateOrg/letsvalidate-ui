@@ -135,6 +135,9 @@ async function addNewMonitorUrl() {
                 } else {
                     newTableRow.insertCell( document.createTextNode("[mute alert]"));
                 }
+            } else {
+                // have blank cell before actions
+                newTableRow.insertCell();
             }
 
             let actionViewCell = newTableRow.insertCell();
