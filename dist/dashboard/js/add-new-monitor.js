@@ -198,7 +198,7 @@ function createTimeDeltaString(dateComparisonString) {
     const currentDate = Date.now();
 
     // secondsDelta
-    const secondsDelta = Math.floor((epochMilliseconds - currentEpochMilliseconds) / 1000);
+    const secondsDelta = Math.floor((currentEpochMilliseconds - currentEpochMilliseconds) / 1000);
 
     // Find out if we're in the range where we should return hours (-24 hours to +24 hours)
     let displayValue = null;
