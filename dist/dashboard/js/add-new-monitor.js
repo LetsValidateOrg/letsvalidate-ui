@@ -137,17 +137,16 @@ async function addNewMonitorUrl() {
                 newTableRow.insertCell();
 
                 if ( currRowEntry.alert_muted === true ) {
-                    newTableRow.insertCell( document.createTextNode("[unmute alert]"));
+                    newTableRow.insertCell().appendChild( document.createTextNode("[unmute alert]") );
                 } else {
-                    newTableRow.insertCell( document.createTextNode("[mute alert]"));
+                    newTableRow.insertCell().appendChild( document.createTextNode("[mute alert]") );
                 }
                 
             } else {
                 // have blank cell before actions
-                //newTableRow.insertCell();
+                newTableRow.insertCell();
             }
 
-            /*
             let actionViewCell = newTableRow.insertCell();
             actionViewCell.classList.add("td_center");
             actionViewCell.appendChild( document.createTextNode("[view cert details]") );
@@ -155,7 +154,6 @@ async function addNewMonitorUrl() {
             let actionDeleteCell = newTableRow.insertCell();
             actionDeleteCell.classList.add("td_center");
             actionDeleteCell.appendChild( document.createTextNode("[delete monitor]") );
-            */
         }
 
         // Display the table
