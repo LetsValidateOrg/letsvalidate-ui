@@ -102,19 +102,23 @@ async function addNewMonitorUrl() {
 
             let expirationCell = newTableRow.insertCell();
             let expirationText = document.createTextNode( createTimeDeltaString(currRowEntry.cert_expires) );
+            expirationCell.classList.add("td_center");
             expirationCell.appendChild( expirationText );
 
             let lastCheckCell = newTableRow.insertCell();
             let lastCheckText = document.createTextNode( createTimeDeltaString(currRowEntry.last_checked) );
+            lastCheckCell.classList.add("td_center");
             lastCheckCell.appendChild( lastCheckText );
 
             // empty -- for spacing
             newTableRow.insertCell();
 
             let actionViewCell = newTableRow.insertCell();
+            actionViewCell.classList.add("td_center");
             actionViewCell.appendChild( document.createTextNode("[view cert details]") );
 
             let actionDeleteCell = newTableRow.insertCell();
+            actionDeleteCell.classList.add("td_center");
             actionDeleteCell.appendChild( document.createTextNode("[delete monitor]") );
         }
 
@@ -199,11 +203,13 @@ function createTimeDeltaString(dateComparisonString) {
 
     // secondsDelta
     const secondsDelta = Math.floor((comparisonEpochMilliseconds - currentEpochMilliseconds) / 1000);
+    /*
     console.log("Current epoch ms: " + currentEpochMilliseconds);
     console.log("comparison epoch ms: " + comparisonEpochMilliseconds);
 
     console.log("Seconds delta between current of " + new Date().toUTCString() + " and comparision " + 
         dateComparisonString + ": " + secondsDelta);
+    */
 
     // Find out if we're in the range where we should return hours (-24 hours to +24 hours)
     let displayValue = null;
