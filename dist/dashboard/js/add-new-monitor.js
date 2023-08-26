@@ -200,7 +200,7 @@ function createTimeDeltaString(dateComparisonString) {
     // secondsDelta
     const secondsDelta = Math.floor((currentEpochMilliseconds - currentEpochMilliseconds) / 1000);
 
-    console.log("Seconds delta between current of " + currentDate.toISOString() + " and comparision " + 
+    console.log("Seconds delta between current of " + new Date().toUTCString() + " and comparision " + 
         dateComparisonString);
 
     // Find out if we're in the range where we should return hours (-24 hours to +24 hours)
