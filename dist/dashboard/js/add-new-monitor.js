@@ -139,11 +139,14 @@ async function addNewMonitorUrl() {
                 } else {
                     newTableRow.insertCell( document.createTextNode("[mute alert]"));
                 }
+                
             } else {
                 // have blank cell before actions
                 newTableRow.insertCell();
+            */
             }
 
+            /*
             let actionViewCell = newTableRow.insertCell();
             actionViewCell.classList.add("td_center");
             actionViewCell.appendChild( document.createTextNode("[view cert details]") );
