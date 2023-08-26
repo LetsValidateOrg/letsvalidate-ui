@@ -192,7 +192,7 @@ function sanityCheckPortNumberField() {
 }
 
 function createTimeDeltaString(dateComparisonString) {
-    let epochMilliseconds = new Date(dateComparisonString).getTime();
+    let currentEpochMilliseconds = new Date(dateComparisonString).getTime();
 
     // Get epoch time now
     const currentDate = Date.now();
