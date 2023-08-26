@@ -112,12 +112,12 @@ async function addNewMonitorUrl() {
             expirationCell.classList.add("td_center");
             expirationCell.appendChild( expirationText );
 
-            /*
-
             let lastCheckCell = newTableRow.insertCell();
             let lastCheckText = document.createTextNode( createTimeDeltaString(currRowEntry.last_checked) );
             lastCheckCell.classList.add("td_center");
             lastCheckCell.appendChild( lastCheckText );
+
+            /*
 
             // Do we need to show alerting cells?
             if ( 'last_alert' in currRowEntry ) {  
