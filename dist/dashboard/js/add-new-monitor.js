@@ -191,7 +191,7 @@ function sanityCheckPortNumberField() {
     checkAddNewUrlInputActions();
 }
 
-function createTimeDeltaString(dateComparisionString) {
+function createTimeDeltaString(dateComparisonString) {
     let epochMilliseconds = new Date(dateComparisonString).getTime();
 
     // Get epoch time now
