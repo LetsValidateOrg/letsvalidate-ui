@@ -104,6 +104,8 @@ async function addNewMonitorUrl() {
             let urlText = document.createTextNode( currRowEntry.url );
             urlCell.appendChild(urlText);
 
+            /*
+
             // empty -- for spacing
             newTableRow.insertCell();
 
@@ -149,6 +151,7 @@ async function addNewMonitorUrl() {
             let actionDeleteCell = newTableRow.insertCell();
             actionDeleteCell.classList.add("td_center");
             actionDeleteCell.appendChild( document.createTextNode("[delete monitor]") );
+            */
         }
 
         // Display the table
