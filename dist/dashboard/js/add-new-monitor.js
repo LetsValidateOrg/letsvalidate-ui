@@ -192,13 +192,15 @@ function sanityCheckPortNumberField() {
 }
 
 function createTimeDeltaString(dateComparisonString) {
-    let currentEpochMilliseconds = new Date(dateComparisonString).getTime();
+    let comparisonEpochMilliseconds = new Date(dateComparisonString).getTime();
 
     // Get epoch time now
-    const currentDate = Date.now();
+    const currentEpochMilliseconds = Date.now();
 
     // secondsDelta
-    const secondsDelta = Math.floor((currentEpochMilliseconds - currentEpochMilliseconds) / 1000);
+    const secondsDelta = Math.floor((comparisonEpochMilliseconds - currentEpochMilliseconds) / 1000);
+    console.log("Current epoch ms: " + currentEpochMilliseconds);
+    console.log("comparison epoch ms: " + comparisonEpochMilliseconds);
 
     console.log("Seconds delta between current of " + new Date().toUTCString() + " and comparision " + 
         dateComparisonString + ": " + secondsDelta);
