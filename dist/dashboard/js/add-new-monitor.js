@@ -103,7 +103,7 @@ async function addNewMonitorUrl() {
 
             let lastCheckCell = newTableRow.insertCell();
             let lastCheckText = document.createTextNode( currRowEntry.last_checked );
-            lastCheckCell.appendChild( lastCheckCell );
+            lastCheckCell.appendChild( lastCheckText );
 
             let emptyCell = newTableRow.insertCell();
             emptyCell.appendChild( document.createTextNode("&nbsp;") );
