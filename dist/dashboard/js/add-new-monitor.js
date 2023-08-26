@@ -119,16 +119,19 @@ async function addNewMonitorUrl() {
 
             // Do we need to show alerting cells?
             if ( 'last_alert' in currRowEntry ) {  
-                newTableRow.insertCell().appendChild( document.createTextNode(
-                    createTimeDeltaString(currRowEntry.last_alert)));
+                let lastAlertCell = newTableRow.insertCell();
+                lastAlertCell.appendChild( document.createTextNode(createTimeDeltaString(currRowEntry.last_alert)));
+                lastAlertCell.classList.add("td_center");
 
+                let mutedCell = newTableRow.insertCell();
                 if ( currRowEntry.alert_muted === false ) {
-                    newTableRow.insertCell().appendChild( document.createTextNode(
+                    mutedCell.appendChild( document.createTextNode(
                         createTimeDeltaString(currRowEntry.next_alert)));
                 } else {
                     // Note the alert is muted currently
-                    newTableRow.insertCell().appendChild( document.createTextNode( '[alert muted]' ) );
+                    mutedCell.appendChild( document.createTextNode( '[alert muted]' ) );
                 }
+                mutedCell.classList.add("td_center");
 
                 /*
                 // Empty before actions
