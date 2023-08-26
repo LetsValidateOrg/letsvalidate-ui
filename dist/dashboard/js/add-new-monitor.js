@@ -98,7 +98,6 @@ async function addNewMonitorUrl() {
                 newTableRow = monitoredTableRef.insertRow(-1);
             }
 
-            // Create new td's
             let urlCell = newTableRow.insertCell();
             let urlText = document.createTextNode( currRowEntry.url );
             urlCell.appendChild(urlText);
@@ -120,8 +119,13 @@ async function addNewMonitorUrl() {
             if ( 'last_alert' in currRowEntry ) {  
                 newTableRow.insertCell().appendChild( document.createTextNode(
                     createTimeDeltaString(currRowEntry.last_alert)));
-                newTableRow.insertCell().appendChild( document.createTextNode(
-                    createTimeDeltaString(currRowEntry.next_alert)));
+                if ( 'next_alert' in currRowEntry ) {
+                    newTableRow.insertCell().appendChild( document.createTextNode(
+                        createTimeDeltaString(currRowEntry.next_alert)));
+                } else {
+                    // Note we're muted
+                    newTableRow.insertCell().appendChild( document.createTextNode( '[alert muted]' ) );
+                }
 
                 // Empty before actions
                 newTableRow.insertCell();
