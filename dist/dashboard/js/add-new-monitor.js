@@ -80,8 +80,43 @@ async function addNewMonitorUrl() {
     if ( fetchResponse.status === 200 ) {
         const jsonBody = await fetchResponse.json();
 
+        /*
         console.log( "JS needs to cache this new data until Worker KV becomes eventually consistent:\n" + 
             JSON.stringify(jsonBody) );
+        */
+
+        let tableRef = document.getElementById("table_monitored_certs");
+
+        for ( currRowEntry of jsonBody ) {
+
+            // Create row at bottom of table (-1 signals "bottom")
+            let newTableRow = tableRef.insertRow(-1);
+
+            // Create new td's
+            let urlCell = newTableRow.insertCell();
+            let urlText = document.createTextNode( currRowEntry.url );
+            urlCell.appendChild(urlText);
+
+            let expirationCell = newTableRow.insertCell();
+            let expirationText = document.createTextNode( currRowEntry.cert_expires );
+            expirationCell.appendChild( expirationText );
+
+            let lastCheckCell = newTableRow.insertCell();
+            let lastCheckText = document.createTextNode( currRowEntry.last_checked );
+            lastCheckCell.appendChild( lastCheckCell );
+
+            let emptyCell = newTableRow.insertCell();
+            emptyCell.appendChild( document.createTextNode("&nbsp;") );
+
+            let actionViewCell = newTableRow.insertCell();
+            actionViewCell.appendChild( document.createTextNode("[view cert details]") );
+
+            let actionDeleteCell = newTableRow.insertCell();
+            actionDeletecell.appendChild( document.createTextNode("[delete monitor]") );
+        }
+
+        // Display the table
+        tableRef.style.display = "table";
     } else if ( fetchResponse.status === 204 ) {
         console.log("This user was already monitoring this site, nothing to do here");
     } else if ( fetchResponse.ok === false ) {
