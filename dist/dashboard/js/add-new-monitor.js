@@ -135,16 +135,18 @@ async function addNewMonitorUrl() {
 
                 // Empty before actions
                 newTableRow.insertCell();
+                /*
 
                 if ( currRowEntry.alert_muted === true ) {
                     newTableRow.insertCell( document.createTextNode("[unmute alert]"));
                 } else {
                     newTableRow.insertCell( document.createTextNode("[mute alert]"));
                 }
+                */
                 
             } else {
                 // have blank cell before actions
-                newTableRow.insertCell();
+                //newTableRow.insertCell();
             }
 
             /*
