@@ -89,6 +89,8 @@ async function addNewMonitorUrl() {
         let monitoredTableRef   = document.getElementById("table_monitored_certs");
 
         for ( currRowEntry of jsonBody ) {
+            
+            console.log("Processing row: " + JSON.stringify(currRowEntry) );
 
             // Create row at bottom of proper table (-1 signals "bottom")
             let newTableRow = null;
