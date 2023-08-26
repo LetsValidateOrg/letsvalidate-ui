@@ -213,7 +213,11 @@ function createTimeDeltaString(dateComparisonString) {
 
     // Find out if we're in the range where we should return hours (-24 hours to +24 hours)
     let displayValue = null;
-    if ( (secondsDelta >= -86400) && (secondsDelta <= 86400) ) {
+    if ( (secondsDelta >= -3600) && (secondsDelta < 3600) ) {
+        displayValue = Math.round( Math.abs(secondsDelta / 60) );
+        displayUnit = "minutes";
+    }
+    else if ( (secondsDelta >= -86400) && (secondsDelta <= 86400) ) {
         displayValue = Math.round( Math.abs(secondsDelta / 3600) ); 
         displayUnit = "hours";
     } else {
@@ -221,14 +225,16 @@ function createTimeDeltaString(dateComparisonString) {
         displayUnit = "days";
     }
 
-    let displayPastFuture = null;
+    let displayString = null;
     if ( secondsDelta < 0 ) {
-        displayPastFuture = "ago";
+        displayString = displayValue + " " + displayUnit + " ago";
+    else if ( secondsDelta === 0 ) }
+        displayString = "(now)";
     } else {
-        displayPastFuture = "from now";
+        displayString = displayValue + " " + displayUnit + " from now";
     }
 
-    return displayValue + " " + displayUnit + " " + displayPastFuture;
+    return displayString;
 }
 
 function addEventListeners() {
