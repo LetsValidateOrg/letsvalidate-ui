@@ -121,7 +121,7 @@ async function addNewMonitorUrl() {
             if ( 'last_alert' in currRowEntry ) {  
                 newTableRow.insertCell().appendChild( document.createTextNode(
                     createTimeDeltaString(currRowEntry.last_alert)));
-                if ( 'next_alert' in currRowEntry ) {
+                if ( !('alert_muted' in currRowEntry) ) {
                     newTableRow.insertCell().appendChild( document.createTextNode(
                         createTimeDeltaString(currRowEntry.next_alert)));
                 } else {
