@@ -85,12 +85,18 @@ async function addNewMonitorUrl() {
             JSON.stringify(jsonBody) );
         */
 
-        let tableRef = document.getElementById("table_monitored_certs");
+        let alertsTableRef      = document.getElementById("table_expiring_certs");
+        let monitoredTableRef   = document.getElementById("table_monitored_certs");
 
         for ( currRowEntry of jsonBody ) {
 
-            // Create row at bottom of table (-1 signals "bottom")
-            let newTableRow = tableRef.insertRow(-1);
+            // Create row at bottom of proper table (-1 signals "bottom")
+            let newTableRow = null;
+            if ( 'last_alert' in currRowEntry ) {
+                newTableRow = alertsTableRef.insertRow(-1);
+            } else {
+                newTableRow = monitoredTableRef.insertRow(-1);
+            }
 
             // Create new td's
             let urlCell = newTableRow.insertCell();
