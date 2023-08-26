@@ -228,7 +228,7 @@ function createTimeDeltaString(dateComparisonString) {
     let displayString = null;
     if ( secondsDelta < 0 ) {
         displayString = displayValue + " " + displayUnit + " ago";
-    else if ( secondsDelta === 0 ) }
+    } else if ( secondsDelta === 0 ) }
         displayString = "(now)";
     } else {
         displayString = displayValue + " " + displayUnit + " from now";
