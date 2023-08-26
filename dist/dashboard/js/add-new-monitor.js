@@ -97,16 +97,18 @@ async function addNewMonitorUrl() {
             let urlText = document.createTextNode( currRowEntry.url );
             urlCell.appendChild(urlText);
 
+            // empty -- for spacing
             newTableRow.insertCell();
 
             let expirationCell = newTableRow.insertCell();
-            let expirationText = document.createTextNode( currRowEntry.cert_expires );
+            let expirationText = document.createTextNode( createTimeDeltaString(currRowEntry.cert_expires) );
             expirationCell.appendChild( expirationText );
 
             let lastCheckCell = newTableRow.insertCell();
-            let lastCheckText = document.createTextNode( currRowEntry.last_checked );
+            let lastCheckText = document.createTextNode( createTimeDeltaString(currRowEntry.last_checked) );
             lastCheckCell.appendChild( lastCheckText );
 
+            // empty -- for spacing
             newTableRow.insertCell();
 
             let actionViewCell = newTableRow.insertCell();
@@ -187,6 +189,35 @@ function sanityCheckPortNumberField() {
 
     // See if we need to enable/diable the form button
     checkAddNewUrlInputActions();
+}
+
+function createTimeDeltaString(dateComparisionString) {
+    let epochMilliseconds = new Date(dateComparisonString).getTime();
+
+    // Get epoch time now
+    const currentDate = Date.now();
+
+    // secondsDelta
+    const secondsDelta = Math.floor((epochMilliseconds - currentEpochMilliseconds) / 1000);
+
+    // Find out if we're in the range where we should return hours (-24 hours to +24 hours)
+    let displayValue = null;
+    if ( (secondsDelta >= -86400) && (secondsDelta <= 86400) ) {
+        displayValue = Math.round( Math.abs(secondsDelta / 3600) ); 
+        displayUnit = "hours";
+    } else {
+        displayValue = Math.round( Math.abs(secondsDelta / 86400) );
+        displayUnit = "days";
+    }
+
+    let displayPastFuture = null;
+    if ( secondsDelta < 0 ) {
+        displayPastFuture = "ago";
+    } else {
+        displayPastFuture = "from now";
+    }
+
+    return displayValue + " " + displayUnit + " " + displayPastFuture;
 }
 
 function addEventListeners() {
