@@ -125,13 +125,12 @@ async function addNewMonitorUrl() {
                 if ( currRowEntry.alert_muted === false ) {
                     newTableRow.insertCell().appendChild( document.createTextNode(
                         createTimeDeltaString(currRowEntry.next_alert)));
-                } 
-                /*
-                else {
-                    // Note we're muted
+                } else {
+                    // Note the alert is muted currently
                     newTableRow.insertCell().appendChild( document.createTextNode( '[alert muted]' ) );
                 }
 
+                /*
                 // Empty before actions
                 newTableRow.insertCell();
 
