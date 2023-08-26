@@ -97,6 +97,8 @@ async function addNewMonitorUrl() {
             let urlText = document.createTextNode( currRowEntry.url );
             urlCell.appendChild(urlText);
 
+            newTableRow.insertCell();
+
             let expirationCell = newTableRow.insertCell();
             let expirationText = document.createTextNode( currRowEntry.cert_expires );
             expirationCell.appendChild( expirationText );
@@ -105,8 +107,7 @@ async function addNewMonitorUrl() {
             let lastCheckText = document.createTextNode( currRowEntry.last_checked );
             lastCheckCell.appendChild( lastCheckText );
 
-            let emptyCell = newTableRow.insertCell();
-            emptyCell.appendChild( document.createTextNode("&nbsp;") );
+            newTableRow.insertCell();
 
             let actionViewCell = newTableRow.insertCell();
             actionViewCell.appendChild( document.createTextNode("[view cert details]") );
