@@ -112,7 +112,7 @@ async function addNewMonitorUrl() {
             actionViewCell.appendChild( document.createTextNode("[view cert details]") );
 
             let actionDeleteCell = newTableRow.insertCell();
-            actionDeletecell.appendChild( document.createTextNode("[delete monitor]") );
+            actionDeleteCell.appendChild( document.createTextNode("[delete monitor]") );
         }
 
         // Display the table
