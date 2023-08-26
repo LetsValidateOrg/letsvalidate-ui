@@ -116,8 +116,22 @@ async function addNewMonitorUrl() {
             lastCheckCell.classList.add("td_center");
             lastCheckCell.appendChild( lastCheckText );
 
-            // empty -- for spacing
-            newTableRow.insertCell();
+            // Do we need to show alerting cells?
+            if ( 'last_alert' in currRowEntry ) {  
+                newTableRow.insertCell().appendChild( document.createTextNode(
+                    createTimeDeltaString(currRowEntry.last_alert)));
+                newTableRow.insertCell().appendChild( document.createTextNode(
+                    createTimeDeltaString(currRowEntry.next_alert)));
+
+                // Empty before actions
+                newTableRow.insertCell();
+
+                if ( 'alert_muted' in currRowEntry ) {
+                    newTableRow.insertCell( document.createTextNode("[unmute alert]"));
+                } else {
+                    newTableRow.insertCell( document.createTextNode("[mute alert]"));
+                }
+            }
 
             let actionViewCell = newTableRow.insertCell();
             actionViewCell.classList.add("td_center");
