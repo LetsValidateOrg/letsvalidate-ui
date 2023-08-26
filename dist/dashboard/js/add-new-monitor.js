@@ -133,20 +133,18 @@ async function addNewMonitorUrl() {
                 }
                 mutedCell.classList.add("td_center");
 
-                /*
                 // Empty before actions
                 newTableRow.insertCell();
 
-                if ( 'alert_muted' in currRowEntry ) {
+                if ( currRowEntry.alert_muted === true ) {
                     newTableRow.insertCell( document.createTextNode("[unmute alert]"));
                 } else {
                     newTableRow.insertCell( document.createTextNode("[mute alert]"));
                 }
-                */
                 
             } else {
                 // have blank cell before actions
-                //newTableRow.insertCell();
+                newTableRow.insertCell();
             }
 
             /*
