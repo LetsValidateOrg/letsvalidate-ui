@@ -129,7 +129,7 @@ async function addNewMonitorUrl() {
         }
 
         // Display the table
-        tableRef.style.display = "table";
+        monitoredTableRef.style.display = "table";
     } else if ( fetchResponse.status === 204 ) {
         console.log("This user was already monitoring this site, nothing to do here");
     } else if ( fetchResponse.ok === false ) {
