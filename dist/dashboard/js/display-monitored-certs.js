@@ -24,7 +24,7 @@ function displayNewMonitorData(newMonitorData) {
 
     let authoritativeString = newMonitorData['metadata']['authoritative_data'];
     if ( newMonitorData['metadata']['browser_cached_state'] === true ) {
-        authoritativeString = authoritativeString + " (retrieved from cached state from browser cookie)";
+        authoritativeString = authoritativeString + " (using cached state stored in browser cookie)";
     }
     console.log("Monitor data is authoritative? " + authoritativeString );
 
