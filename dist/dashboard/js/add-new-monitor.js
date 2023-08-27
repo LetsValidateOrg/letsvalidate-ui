@@ -86,7 +86,7 @@ async function addNewMonitorUrl() {
 
         const dataTimestampString = jsonBody['metadata']['data_timestamp'];
         const dataTimestamp = new Date(dataTimestampString);
-        console.log("Data timestamp from backend infra (AWS): " + dataTimestampString );
+        //console.log("Data timestamp from backend infra (AWS): " + dataTimestampString );
 
         displayNewMonitorData( jsonBody );
 
@@ -100,10 +100,21 @@ async function addNewMonitorUrl() {
             //      Worker KV *should* become updated with this same data within 60 seconds,
             //      but let's add 600 seconds of pad to be uber safe. If it hasn't hit worker KV by then,
             //      something is horribly wrong
-            const expirationDate = new Date(Date.now() + (60 * 10));
+            const millisecondsPerSecond = 1000;
+            const secondsPerMinute = 60;
+            const millisecondsPerMinute = millisecondsPerSecond * secondsPerMinute;
+            const expirationDate = new Date(Date.now() + (10 * millisecondsPerMinute) );
             const expirationSuffix = "; expires=" + expirationDate.toUTCString();
             document.cookie = "LETSVAL_USER_STATE_CACHE=" + opaqueStateValue + expirationSuffix;
             console.log("Stored authoritative state in temp browser cookie until Workers KV becomes synchronized");
+
+            // Check cookie value
+            const cookieCheckValue = getCookie( "LETSVAL_USER_STATE_CACHE" );
+            if ( cookieCheckValue === null ) {
+                console.log("ERROR: did not retrieve cookie immediately after setting it");
+            } else {
+                console.log("Browser cookie state: " + cookieCheckValue);
+            }
 
         } else {
             console.log("WARNING: data coming back from backend infra is not marked authoritative");
