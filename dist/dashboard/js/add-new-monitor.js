@@ -80,6 +80,8 @@ async function addNewMonitorUrl() {
     if ( fetchResponse.status === 200 ) {
         const jsonBody = await fetchResponse.json();
 
+        console.log("Got response:\n" + JSON.stringify(jsonBody));
+
         const dataTimestampString = jsonBody['metadata']['data_timestamp'];
         const dataTimestamp = new Date(dataTimestampString);
         console.log("Data timestamp from backend infra (AWS): " + dataTimestampString );
