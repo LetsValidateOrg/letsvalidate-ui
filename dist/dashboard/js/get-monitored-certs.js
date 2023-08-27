@@ -65,6 +65,15 @@ async function requestMonitoredCerts() {
         
     } else {
         console.log("Got non-200 response for monitored certs");
+
+        // See if we have cached data we can display
+        const cachedBrowserStateString  = getCookie( "LETSVAL_USER_STATE_CACHE" );
+        if ( cachedBrowserStateString !== null ) {
+            console.log("Browser cookie has cached state, so let's show that");
+            const browserCachedState = JSON.parse( atob(cachedBrowserStateString) );    
+            browserCachedState['metadata']['browser_cached_state'] = true;
+            displayNewMonitorData( browserCachedState );
+        }
     }
 }
 
