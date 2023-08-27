@@ -55,7 +55,7 @@ async function requestMonitoredCerts() {
             } else {
                 // Cached state is still newer, so use that data
                 dataToDisplay = browserCachedState;
-                dataToDisplay['metadata']['browser_cached_state']: true;
+                dataToDisplay['metadata']['browser_cached_state'] = true;
                 console.log("Retaining browser state cache as that data is newer than API data");
             }
         }
