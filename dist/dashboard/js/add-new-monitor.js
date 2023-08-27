@@ -100,14 +100,14 @@ async function addNewMonitorUrl() {
             // base64 encode the JSON to make it (slightly) opaque -- users shouldn't know or care
             const opaqueStateValue = btoa(JSON.stringify(tempState));
 
-            // Update our state cookie with this info and cache it for max of 10 minutes.
+            // Update our state cookie with this info and cache it for max of 3 minutes.
             //      Worker KV *should* become updated with this same data within 60 seconds,
-            //      but let's add 600 seconds of pad to be uber safe. If it hasn't hit worker KV by then,
+            //      but let's add three times that long to be uber safe. If it hasn't hit worker KV by then,
             //      something is horribly wrong
             const millisecondsPerSecond = 1000;
             const secondsPerMinute = 60;
             const millisecondsPerMinute = millisecondsPerSecond * secondsPerMinute;
-            const expirationDate = new Date(Date.now() + (10 * millisecondsPerMinute) );
+            const expirationDate = new Date(Date.now() + (3 * millisecondsPerMinute) );
             const expirationSuffix = "; expires=" + expirationDate.toUTCString();
             document.cookie = "LETSVAL_USER_STATE_CACHE=" + opaqueStateValue + expirationSuffix;
             console.log("Stored authoritative state in temp browser cookie until Workers KV becomes synchronized");
