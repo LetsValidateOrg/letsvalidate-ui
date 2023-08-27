@@ -20,7 +20,7 @@ function displayNewMonitorData(newMonitorData) {
     const dataTimestampString = newMonitorData['metadata']['data_timestamp'];
     const dataTimestamp = new Date(dataTimestampString);
     const datacenterInfo = newMonitorData['metadata']['api_endpoint']['datacenter_iata_code'];
-    console.log("Data timestamp from datacenter: " + datacenterInfo + ": " + dataTimestampString );
+    console.log("Data timestamp from datacenter \"" + datacenterInfo + "\": " + dataTimestampString );
 
 
     let alertsTableRef      = document.getElementById("table_expiring_certs");

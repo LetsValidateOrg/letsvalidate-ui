@@ -80,18 +80,34 @@ async function addNewMonitorUrl() {
     if ( fetchResponse.status === 200 ) {
         const jsonBody = await fetchResponse.json();
 
-        console.log("Got response:\n" + JSON.stringify(jsonBody));
+        // Get string version
+        const jsonStateString = JSON.stringify(jsonBody);
+        //console.log("Got response:\n" + jsonStateString );
 
         const dataTimestampString = jsonBody['metadata']['data_timestamp'];
         const dataTimestamp = new Date(dataTimestampString);
         console.log("Data timestamp from backend infra (AWS): " + dataTimestampString );
 
-        /*
-        console.log( "JS needs to cache this new data until Worker KV becomes eventually consistent:\n" + 
-            JSON.stringify(jsonBody) );
-        */
-
         displayNewMonitorData( jsonBody );
+
+        // Is this authoritative data? (it should be -- it's from backend infra)
+        const isAuthoritativeData = jsonBody['metadata']['authoritative_data'];
+        if ( isAuthoritativeData === true ) {
+            // base64 encode the JSON to make it (slightly) opaque -- users shouldn't know or care
+            const opaqueStateValue = btoa(jsonStateString);
+
+            // Update our state cookie with this info and cache it for max of 10 minutes.
+            //      Worker KV *should* become updated with this same data within 60 seconds,
+            //      but let's add 600 seconds of pad to be uber safe. If it hasn't hit worker KV by then,
+            //      something is horribly wrong
+            const expirationDate = new Date(Date.now() + (60 * 10));
+            const expirationSuffix = "; expires=" + expirationDate.toUTCString();
+            document.cookie = "LETSVAL_USER_STATE_CACHE=" + opaqueStateValue + expirationSuffix;
+            console.log("Stored authoritative state in temp browser cookie until Workers KV becomes synchronized");
+
+        } else {
+            console.log("WARNING: data coming back from backend infra is not marked authoritative");
+        }
     } else if ( fetchResponse.status === 204 ) {
         console.log("This user was already monitoring this site, nothing to do here");
     } else if ( fetchResponse.ok === false ) {
