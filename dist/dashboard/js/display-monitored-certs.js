@@ -107,12 +107,20 @@ function displayNewMonitorData(newMonitorData) {
         let img = new Image();
         img.src = "/dashboard/img/cancel.png";
         img.classList.add( 'img_cancel' );
+        img.addEventListener( "click", function() {
+            cancelMonitor(currRowEntry.monitor_id )
+        });
         actionDeleteCell.appendChild( img );
     }
 
     // Display the tables now that all rows are back in 
     alertsTableRef.style.display        = "table";
     monitoredTableRef.style.display     = "table";
+}
+
+function handleCancelUserMonitor(monitorIdToCancel) {
+    console.log("User requested to stop monitoring a certificate");
+
 }
 
 function createTimeDeltaString(dateComparisonString) {
