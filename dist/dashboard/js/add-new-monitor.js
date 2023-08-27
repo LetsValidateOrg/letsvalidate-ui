@@ -80,6 +80,10 @@ async function addNewMonitorUrl() {
     if ( fetchResponse.status === 200 ) {
         const jsonBody = await fetchResponse.json();
 
+        const dataTimestampString = jsonBody['metadata']['data_timestamp'];
+        const dataTimestamp = new Date(dataTimestampString);
+        console.log("Data timestamp from backend infra (AWS): " + dataTimestampString );
+
         /*
         console.log( "JS needs to cache this new data until Worker KV becomes eventually consistent:\n" + 
             JSON.stringify(jsonBody) );
@@ -230,7 +234,7 @@ function sanityCheckPortNumberField() {
 }
 
 function createTimeDeltaString(dateComparisonString) {
-    let comparisonEpochMilliseconds = new Date(dateComparisonString).getTime();
+    const comparisonEpochMilliseconds = new Date(dateComparisonString).getTime();
 
     // Get epoch time now
     const currentEpochMilliseconds = Date.now();
