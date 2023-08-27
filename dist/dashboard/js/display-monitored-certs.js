@@ -106,6 +106,7 @@ function displayNewMonitorData(newMonitorData) {
         actionDeleteCell.classList.add("td_center");
         let img = new Image();
         img.src = "/dashboard/img/cancel.png";
+        img.classList.add( 'img_cancel' );
         actionDeleteCell.appendChild( img );
     }
 
