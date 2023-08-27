@@ -13,14 +13,14 @@ function removeAllCertDataRows() {
 }
 
 function displayNewMonitorData(newMonitorData) {
+
+    console.log("Displaying (potentially) new data");
+    console.log(JSON.stringify(newMonitorData));
+
     const dataTimestampString = newMonitorData['metadata']['data_timestamp'];
     const dataTimestamp = new Date(dataTimestampString);
-    console.log("Data timestamp from backend infra (AWS): " + dataTimestampString );
+    console.log("Data timestamp: " + dataTimestampString );
 
-    /*
-    console.log( "JS needs to cache this new data until Worker KV becomes eventually consistent:\n" +
-        JSON.stringify(newMonitorData) );
-    */
 
     let alertsTableRef      = document.getElementById("table_expiring_certs");
     let monitoredTableRef   = document.getElementById("table_monitored_certs");
