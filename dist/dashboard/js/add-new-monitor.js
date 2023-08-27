@@ -88,7 +88,7 @@ async function addNewMonitorUrl() {
         let alertsTableRef      = document.getElementById("table_expiring_certs");
         let monitoredTableRef   = document.getElementById("table_monitored_certs");
 
-        for ( currRowEntry of jsonBody ) {
+        for ( currRowEntry of jsonBody['monitored_certificates'] ) {
             
             console.log("Processing row: " + JSON.stringify(currRowEntry) );
 
