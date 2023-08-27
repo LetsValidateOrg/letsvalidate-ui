@@ -108,7 +108,7 @@ function displayNewMonitorData(newMonitorData) {
         img.src = "/dashboard/img/cancel.png";
         img.classList.add( 'img_cancel' );
         img.addEventListener( "click", function() {
-            cancelMonitor(currRowEntry.monitor_id )
+            handleCancelUserMonitor(currRowEntry.monitor_id )
         });
         actionDeleteCell.appendChild( img );
     }
@@ -119,7 +119,7 @@ function displayNewMonitorData(newMonitorData) {
 }
 
 function handleCancelUserMonitor(monitorIdToCancel) {
-    console.log("User requested to stop monitoring a certificate");
+    console.log("User requested to stop monitoring a certificate, monitor ID: " + monitorIdToCancel);
 
 }
 
