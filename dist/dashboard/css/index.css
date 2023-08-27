@@ -82,4 +82,5 @@ td.td_redbg {
 
 img.img_cancel { 
     width: 20px;
+    cursor: pointer;
 }
