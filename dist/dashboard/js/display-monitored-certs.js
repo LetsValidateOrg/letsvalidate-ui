@@ -104,7 +104,9 @@ function displayNewMonitorData(newMonitorData) {
 
         let actionDeleteCell = newTableRow.insertCell();
         actionDeleteCell.classList.add("td_center");
-        actionDeleteCell.appendChild( document.createTextNode("[delete monitor]") );
+        let img = new Image();
+        img.src = "/dashboard/img/cancel.png";
+        actionDeleteCell.appendChild( img );
     }
 
     // Display the tables now that all rows are back in 
