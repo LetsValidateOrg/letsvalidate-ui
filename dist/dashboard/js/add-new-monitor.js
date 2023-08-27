@@ -93,8 +93,12 @@ async function addNewMonitorUrl() {
         // Is this authoritative data? (it should be -- it's from backend infra)
         const isAuthoritativeData = jsonBody['metadata']['authoritative_data'];
         if ( isAuthoritativeData === true ) {
+            // Flip the authoritative data to false as we're adding this to the cache
+            let tempState = JSON.parse(jsonStateString);
+            tempState['metadata']['authoritativeData'] = false;
+
             // base64 encode the JSON to make it (slightly) opaque -- users shouldn't know or care
-            const opaqueStateValue = btoa(jsonStateString);
+            const opaqueStateValue = btoa(JSON.stringify(tempState));
 
             // Update our state cookie with this info and cache it for max of 10 minutes.
             //      Worker KV *should* become updated with this same data within 60 seconds,
@@ -109,12 +113,14 @@ async function addNewMonitorUrl() {
             console.log("Stored authoritative state in temp browser cookie until Workers KV becomes synchronized");
 
             // Check cookie value
+            /*
             const cookieCheckValue = getCookie( "LETSVAL_USER_STATE_CACHE" );
             if ( cookieCheckValue === null ) {
                 console.log("ERROR: did not retrieve cookie immediately after setting it");
             } else {
                 console.log("Browser cookie state: " + cookieCheckValue);
             }
+            */
 
         } else {
             console.log("WARNING: data coming back from backend infra is not marked authoritative");

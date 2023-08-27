@@ -44,8 +44,10 @@ async function requestMonitoredCerts() {
             //      string lexicographical comparison, no need to turn them into real date objects
             const apiDataTimestamp          = monitoredCerts['metadata']['data_timestamp'];
             const browserCacheDataTimestamp = browserCachedState['metadata']['data_timestamp'];
+            /*
             console.log("          Data timestamp (API) : " + apiDataTimestamp);
             console.log("Data timestamp (browser cache) : " + browserCacheDataTimestamp );
+            */
             if ( apiDataTimestamp >= browserCacheDataTimestamp ) {
                 // Set the expiration time to the epoch to force browser to delete
                 document.cookie = "LETSVAL_USER_STATE_CACHE=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -53,6 +55,7 @@ async function requestMonitoredCerts() {
             } else {
                 // Cached state is still newer, so use that data
                 dataToDisplay = browserCachedState;
+                dataToDisplay['metadata']['browser_cached_state']: true;
                 console.log("Retaining browser state cache as that data is newer than API data");
             }
         }

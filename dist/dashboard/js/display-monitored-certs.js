@@ -20,7 +20,13 @@ function displayNewMonitorData(newMonitorData) {
     const dataTimestampString = newMonitorData['metadata']['data_timestamp'];
     const dataTimestamp = new Date(dataTimestampString);
     const datacenterInfo = newMonitorData['metadata']['api_endpoint']['datacenter_iata_code'];
-    console.log("Data timestamp from datacenter \"" + datacenterInfo + "\": " + dataTimestampString );
+    console.log("Monitor data timestamp from datacenter \"" + datacenterInfo + "\": " + dataTimestampString );
+
+    let authoritativeString = newMonitorData['metadata']['authoritative_data'];
+    if ( newMonitorData['metadata']['browser_cached_state'] === true ) {
+        authoritativeString = authoritativeString + " (retrieved from cached state from browser cookie)";
+    }
+    console.log("Monitor data is authoritative? " + authoritativeString );
 
 
     let alertsTableRef      = document.getElementById("table_expiring_certs");
