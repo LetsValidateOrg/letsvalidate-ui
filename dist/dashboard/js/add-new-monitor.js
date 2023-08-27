@@ -95,7 +95,7 @@ async function addNewMonitorUrl() {
         if ( isAuthoritativeData === true ) {
             // Flip the authoritative data to false as we're adding this to the cache
             let tempState = JSON.parse(jsonStateString);
-            tempState['metadata']['authoritativeData'] = false;
+            tempState['metadata']['authoritative_data'] = false;
 
             // base64 encode the JSON to make it (slightly) opaque -- users shouldn't know or care
             const opaqueStateValue = btoa(JSON.stringify(tempState));
