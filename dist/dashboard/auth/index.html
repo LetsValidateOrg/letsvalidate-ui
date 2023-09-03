@@ -1,0 +1,28 @@
+<!DOCTYPE>
+
+<html>
+    <head>
+        <title>Lets Validate - Dashboard Auth Info</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="/dashboard/css/index.css">
+        
+        <script src="/dashboard/js/auth-cookie-check.js"></script>
+
+        <!-- All scripts after this should be set with defer and will be
+             executed in order -->
+        <script src="/dashboard/auth/show-auth-cookie.js"    defer></script>
+    </head>
+
+    <body>
+        <table>
+            <tr>
+                <td>Auth cookie:</td>
+                <td><pre id="pre_auth_token_contents"></pre></td>
+            </td>
+        </table>
+    </body>
+</html>
