@@ -41,7 +41,7 @@ function displayNewMonitorData(newMonitorData) {
 
     for ( currRowEntry of newMonitorData['monitored_certificates'] ) {
 
-        //console.log("Processing row: " + JSON.stringify(currRowEntry) );
+        console.log("Processing row: " + JSON.stringify(currRowEntry) );
 
         // Create row at bottom of proper table (-1 signals "bottom")
         let newTableRow = null;
