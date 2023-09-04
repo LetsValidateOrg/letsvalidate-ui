@@ -14,8 +14,10 @@ function removeAllCertDataRows() {
 
 function displayNewMonitorData(newMonitorData) {
 
+    /*
     console.log("Displaying (potentially) new data");
     console.log(JSON.stringify(newMonitorData));
+    */
 
     const dataTimestampString = newMonitorData['metadata']['data_timestamp'];
     const dataTimestamp = new Date(dataTimestampString);
@@ -41,7 +43,7 @@ function displayNewMonitorData(newMonitorData) {
 
     for ( currRowEntry of newMonitorData['monitored_certificates'] ) {
 
-        console.log("Processing row: " + JSON.stringify(currRowEntry) );
+        //console.log("Processing row: " + JSON.stringify(currRowEntry) );
 
         // Create row at bottom of proper table (-1 signals "bottom")
         let newTableRow = null;
