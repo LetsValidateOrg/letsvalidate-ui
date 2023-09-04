@@ -1,8 +1,6 @@
 async function handleCancelUserMonitor(monitorIdToCancel) {
     console.log("User requested to stop monitoring a certificate, monitor ID: " + monitorIdToCancel);
 
-    return;
-
     const constructedRequestUrl = monitoredUrlApiEndpoint + "?" + new URLSearchParams(
         {
             monitor_id : monitorIdToCancel
