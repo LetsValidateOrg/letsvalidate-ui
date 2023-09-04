@@ -109,8 +109,8 @@ function displayNewMonitorData(newMonitorData) {
         img.classList.add( 'img_cancel' );
         img.addEventListener( "click", function() {
             handleCancelUserMonitor(currRowEntry.monitor_id )
-            console.log("Added cancel call for monitor " + (currRowEntry.monitor_id) );
         });
+        console.log("Added cancel call for monitor " + currRowEntry.monitor_id );
         actionDeleteCell.appendChild( img );
     }
 
