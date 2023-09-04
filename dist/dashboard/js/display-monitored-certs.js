@@ -109,9 +109,7 @@ function displayNewMonitorData(newMonitorData) {
         let img = new Image();
         img.src = "/dashboard/img/cancel.png";
         img.classList.add( 'img_cancel' );
-        img.addEventListener( "click", function() {
-            handleCancelUserMonitor(currRowEntry.monitor_id )
-        });
+        img.addEventListener( "click", addCancelCall(currRowEntry.monitor_id));
         console.log("Added cancel call for monitor " + currRowEntry.monitor_id );
         actionDeleteCell.appendChild( img );
     }
@@ -119,6 +117,13 @@ function displayNewMonitorData(newMonitorData) {
     // Display the tables now that all rows are back in 
     alertsTableRef.style.display        = "table";
     monitoredTableRef.style.display     = "table";
+}
+
+function addCancelCall(monitorId) {
+    return function() {
+        console.log("Trying to cancel monitor ID " + monitorId);
+        //handleCancelUserMonitor(monitorId);
+    }
 }
 
 function createTimeDeltaString(dateComparisonString) {
