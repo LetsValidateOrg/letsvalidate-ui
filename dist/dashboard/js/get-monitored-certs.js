@@ -56,7 +56,7 @@ async function requestMonitoredCerts() {
                 // Cached state is still newer, so use that data
                 dataToDisplay = browserCachedState;
                 dataToDisplay['metadata']['browser_cached_state'] = true;
-                console.log("Retaining browser state cache as that data is newer than API data");
+                console.log("Retaining browser state cache as that data is more recent than Cloudflare's cached data");
             }
         }
 
