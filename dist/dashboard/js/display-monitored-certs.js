@@ -118,11 +118,6 @@ function displayNewMonitorData(newMonitorData) {
     monitoredTableRef.style.display     = "table";
 }
 
-function handleCancelUserMonitor(monitorIdToCancel) {
-    console.log("User requested to stop monitoring a certificate, monitor ID: " + monitorIdToCancel);
-
-}
-
 function createTimeDeltaString(dateComparisonString) {
     const comparisonEpochMilliseconds = new Date(dateComparisonString).getTime();
 
