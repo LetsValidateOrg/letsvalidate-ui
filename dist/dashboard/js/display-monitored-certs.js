@@ -110,7 +110,7 @@ function displayNewMonitorData(newMonitorData) {
         img.src = "/dashboard/img/cancel.png";
         img.classList.add( 'img_cancel' );
         img.addEventListener( "click", addCancelCall(currRowEntry.monitor_id));
-        console.log("Added cancel call for monitor " + currRowEntry.monitor_id );
+        //console.log("Added cancel call for monitor " + currRowEntry.monitor_id );
         actionDeleteCell.appendChild( img );
     }
 
@@ -121,8 +121,8 @@ function displayNewMonitorData(newMonitorData) {
 
 function addCancelCall(monitorId) {
     return function() {
-        console.log("Trying to cancel monitor ID " + monitorId);
-        //handleCancelUserMonitor(monitorId);
+        //console.log("Trying to cancel monitor ID " + monitorId);
+        handleCancelUserMonitor(monitorId);
     }
 }
 
