@@ -14,8 +14,8 @@ function removeAllCertDataRows() {
 
 function displayNewMonitorData(newMonitorData) {
 
-    //console.log("Displaying (potentially) new data");
-    //console.log(JSON.stringify(newMonitorData));
+    console.log("Displaying (potentially) new data");
+    console.log(JSON.stringify(newMonitorData));
 
     const dataTimestampString = newMonitorData['metadata']['data_timestamp'];
     const dataTimestamp = new Date(dataTimestampString);
