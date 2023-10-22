@@ -14,8 +14,11 @@ function processAuthTokens( accessToken, refreshToken, accessTokenExpiration ) {
 }
 
 function cleanUpUrl() {
+    // Get everything to the left of the first question mark
+    const cleanUrl = window.location.href.substring(0, window.location.href.indexOf('?'));
+
     // Overwrite the URL to remove all the code stuff
-    history.replaceState(null, null, "https://letsvalidate.org/dashboard" );
+    history.replaceState(null, null, cleanUrl);
 
     console.log( "URL rewritten to remove tokens now that they are stored in cookies" );
 }
