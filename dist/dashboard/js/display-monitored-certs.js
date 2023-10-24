@@ -41,7 +41,7 @@ function displayNewMonitorData(newMonitorData) {
     // Clear out all rows but headers, getting all fresh data
     removeAllCertDataRows();
 
-    for ( currRowEntry of newMonitorData['monitored_certificates'] ) {
+    for ( currRowEntry of newMonitorData['monitors'] ) {
 
         //console.log("Processing row: " + JSON.stringify(currRowEntry) );
 
