@@ -63,7 +63,7 @@ async function addNewMonitorUrl() {
                 "Authorization": accessToken
             },
 
-            body: JSON.stringify( { url: fullUrl } )
+            body: JSON.stringify( { url: fullUrl } ),
 
             method: "POST"
         });
