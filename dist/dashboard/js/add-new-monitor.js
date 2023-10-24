@@ -1,4 +1,4 @@
-const monitoredUrlApiEndpoint = "https://wvyfbi1fnf.execute-api.us-east-2.amazonaws.com/api/v001/monitored_url";
+const monitoredUrlApiEndpoint = "https://wvyfbi1fnf.execute-api.us-east-2.amazonaws.com/api/v001/monitor";
 
 function clearResetAddMonitor() {
     let hostnameInput   = document.getElementById("input_new_monitor_url");
@@ -49,12 +49,8 @@ async function addNewMonitorUrl() {
 
     console.log("Going to submit URL \"" + fullUrl + "\" to backend API" );
 
-    const constructedRequestUrl = monitoredUrlApiEndpoint + "?" + new URLSearchParams(
-        {
-            url         : fullUrl
-        }
-    );
-
+    const constructedRequestUrl = monitoredUrlApiEndpoint;
+    
     //console.log("Constructed URL: " + constructedRequestUrl);
 
     const accessToken = getAccessToken();
@@ -66,6 +62,8 @@ async function addNewMonitorUrl() {
             headers: {
                 "Authorization": accessToken
             },
+
+            body: JSON.stringify( { url: fullUrl } )
 
             method: "POST"
         });
