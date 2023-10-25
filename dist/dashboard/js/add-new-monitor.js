@@ -1,4 +1,4 @@
-const monitoredUrlApiEndpoint = "https://wvyfbi1fnf.execute-api.us-east-2.amazonaws.com/api/v001/monitor";
+const monitoredUrlApiEndpoint = "https://wvyfbi1fnf.execute-api.us-east-2.amazonaws.com/api/v001/monitors";
 
 function clearResetAddMonitor() {
     let hostnameInput   = document.getElementById("input_new_monitor_url");
