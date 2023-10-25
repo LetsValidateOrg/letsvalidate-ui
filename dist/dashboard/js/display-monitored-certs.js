@@ -61,12 +61,12 @@ function displayNewMonitorData(newMonitorData) {
         newTableRow.insertCell();
 
         let expirationCell = newTableRow.insertCell();
-        let expirationText = document.createTextNode( createTimeDeltaString(currRowEntry.cert_expires) );
+        let expirationText = document.createTextNode( createTimeDeltaString(currRowEntry.tls_certificate.cert_expires) );
         expirationCell.classList.add("td_center");
         expirationCell.appendChild( expirationText );
 
         let lastCheckCell = newTableRow.insertCell();
-        let lastCheckText = document.createTextNode( createTimeDeltaString(currRowEntry.last_checked) );
+        let lastCheckText = document.createTextNode( createTimeDeltaString(currRowEntry.tls_certificate.last_checked) );
         lastCheckCell.classList.add("td_center");
         lastCheckCell.appendChild( lastCheckText );
 
