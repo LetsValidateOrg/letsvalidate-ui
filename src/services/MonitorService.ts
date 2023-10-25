@@ -204,7 +204,7 @@ export const MonitorService = {
 }
 
 const monitoredUrlApiEndpoint =
-  'https://wvyfbi1fnf.execute-api.us-east-2.amazonaws.com/api/v001/monitored_url'
+  'https://wvyfbi1fnf.execute-api.us-east-2.amazonaws.com/api/v001/monitors'
 
 function scrubHostnameOrIp(url: string): string {
   // Strip prefixes we don't allow/need
