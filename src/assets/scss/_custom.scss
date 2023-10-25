@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+$blue: #002C6B !default;
+$orange: #FF6831 !default;
+$secondary: $orange !default;
+$font-family-base: 'Poppins', sans-serif;
+// Bootstrap and its default variables
+@import '../../../node_modules/bootstrap/scss/bootstrap.scss';
