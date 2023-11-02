@@ -18,8 +18,12 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView,
-      beforeEnter: [getAuthStatus]
+      component: HomeView
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: () => import('../views/DashboardView.vue')
     },
     {
       path: '/about',
@@ -28,6 +32,21 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue')
+    },
+    {
+      path: '/governance',
+      name: 'governance',
+      component: () => import('../views/GovernanceView.vue')
+    },
+    {
+      path: '/people',
+      name: 'people',
+      component: () => import('../views/PeopleView.vue')
+    },
+    {
+      path: '/history',
+      name: 'history',
+      component: () => import('../views/HistoryView.vue')
     }
   ]
 })
