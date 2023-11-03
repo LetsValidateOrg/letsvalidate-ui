@@ -5,10 +5,5 @@ $orange: #FF6831 !default;
 $secondary: $orange !default;
 $font-family-base: 'Poppins', sans-serif;
 
-.btn-login {
-    background-color: $orange;
-    color: #fff;
-}
-
 // Bootstrap and its default variables
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';

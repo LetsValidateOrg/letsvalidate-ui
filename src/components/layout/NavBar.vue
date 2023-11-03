@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
+// This no worky
+import { LoginButton } from '../../components/login_button/LoginButton.vue'
+import { AuthService } from '@/services/AuthService'
+
+const loggedIn = AuthService.authStatusLoggedIn()
 </script>
 
 <template>
@@ -14,14 +19,23 @@ import { RouterLink } from 'vue-router'
           <li class="nav-item mx-2">
             <RouterLink class="nav-link" to="/">Home</RouterLink>
           </li>
-          <li class="nav-item mx-2">
+          <li v-if="loggedIn" class="nav-item mx-2">
             <RouterLink class="nav-link" to="/dashboard">Dashboard</RouterLink>
           </li>
           <li class="nav-item mx-2">
             <RouterLink class="nav-link" to="/about">About</RouterLink>
           </li>
         </ul>
-        <button class="btn my-2 btn-primary" type="submit">Button</button>
+        <!-- Should be in a component but was giving me issues -->
+        <div v-if="loggedIn" class="ms-4">
+            <button class="btn my-2 btn-primary" type="submit">Sign Out</button>
+        </div>
+        <div v-else class="ms-4 small text-center">
+            <button class="btn my-0 btn-primary" type="submit">Sign In</button>
+            <br>
+            <span>Or </span><RouterLink to="/sign_up">Sign Up</RouterLink>
+        </div>
+        <!-- End Component -->
       </div>
     </div>
   </nav>

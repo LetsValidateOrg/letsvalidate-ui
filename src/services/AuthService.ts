@@ -17,7 +17,7 @@ export const AuthService = {
   getAccessToken(): string | null {
     return this.getCookie('LETSVAL_ACCESS_TOKEN')
   },
-  authStatusLogedIn(): boolean {
+  authStatusLoggedIn(): boolean {
     const accessToken = this.getAccessToken()
     const expireTime = this.getCookie('LETSVAL_TOKEN_EXPIRATION')
 

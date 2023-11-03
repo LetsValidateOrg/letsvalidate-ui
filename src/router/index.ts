@@ -6,7 +6,7 @@ import { hostedLoginUrls } from '../models/HostedUrls'
 // Redirect users to cognito url if it's a guarded url and they aren't logged in
 function getAuthStatus() {
   const cognitoHostedLoginUrl = hostedLoginUrls[window.location.hostname] as string
-  if (!AuthService.authStatusLogedIn()) {
+  if (!AuthService.authStatusLoggedIn()) {
     window.location.href = cognitoHostedLoginUrl
     return false
   }
