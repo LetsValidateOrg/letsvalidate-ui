@@ -64,6 +64,40 @@ import type {
   MonitoredCertificate
 } from '@/models/MonitoredCertificates'
 
+const mockCerts = {
+      metadata: {
+        authoritative_data: false,
+        browser_cached_state: false,
+        data_timestamp: new Date()
+      },
+      monitors: [
+        {
+          url: 'www.google.com',
+          cert_expires: new Date(Date.now() + 24 * 3600 * 1000),
+          cert_issuer_org: 'godaddy.org',
+          last_checked: new Date(Date.now() - 24 * 3600 * 1000),
+          monitor_id: '123abc',
+          alert_muted: false
+        },
+        {
+          url: 'www.gizmodo.com',
+          cert_expires: new Date(Date.now() + 72 * 3600 * 1000),
+          cert_issuer_org: 'godaddy.org',
+          last_checked: new Date(),
+          monitor_id: 'abc456',
+          alert_muted: false
+        },
+        {
+          url: 'www.ksl.com',
+          cert_expires: new Date(Date.now() + 365 * 3600 * 1000),
+          cert_issuer_org: 'godaddy.org',
+          last_checked: new Date(),
+          monitor_id: '456def',
+          alert_muted: false
+        }
+      ]
+    }
+
 export default {
   data() {
     return {
@@ -128,41 +162,7 @@ export default {
     }
   },
   async mounted() {
-    // const certs = await MonitorService.getMonitoredCerts()
-
-    const certs = {
-      metadata: {
-        authoritative_data: false,
-        browser_cached_state: false,
-        data_timestamp: new Date()
-      },
-      monitors: [
-        {
-          url: 'www.google.com',
-          cert_expires: new Date(Date.now() + 24 * 3600 * 1000),
-          cert_issuer_org: 'godaddy.org',
-          last_checked: new Date(Date.now() - 24 * 3600 * 1000),
-          monitor_id: '123abc',
-          alert_muted: false
-        },
-        {
-          url: 'www.gizmodo.com',
-          cert_expires: new Date(Date.now() + 72 * 3600 * 1000),
-          cert_issuer_org: 'godaddy.org',
-          last_checked: new Date(),
-          monitor_id: 'abc456',
-          alert_muted: false
-        },
-        {
-          url: 'www.ksl.com',
-          cert_expires: new Date(Date.now() + 365 * 3600 * 1000),
-          cert_issuer_org: 'godaddy.org',
-          last_checked: new Date(),
-          monitor_id: '456def',
-          alert_muted: false
-        }
-      ]
-    }
+    const certs = await MonitorService.getMonitoredCerts()
     this.monitored_response = certs
   }
 }

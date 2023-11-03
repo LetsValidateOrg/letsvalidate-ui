@@ -1,6 +1,10 @@
 import { AuthService } from './AuthService'
 import type { MonitoredCertificateResponse } from '../models/MonitorCertificates'
 
+const getMonitoredCertsEndpoint = "https://letsvalidate-webui-api.publicntp.workers.dev/api/v001/monitors";
+const monitoredUrlApiEndpoint = "https://wvyfbi1fnf.execute-api.us-east-2.amazonaws.com/api/v001/monitors";
+
+
 export const MonitorService = {
   async addNewMonitorUrl(url: string, port: number): Promise<MonitoredCertificateResponse | null> {
     const accessToken = AuthService.getAccessToken()
@@ -9,19 +13,18 @@ export const MonitorService = {
     }
     let fullUrl = 'https://' + scrubHostnameOrIp(url)
 
-    const constructedRequestUrl =
-      monitoredUrlApiEndpoint + '?' + new URLSearchParams({ url: fullUrl })
-
     if (port != 443) {
       fullUrl = fullUrl + ':' + port
     }
-
-    const fetchResponse = await fetch(constructedRequestUrl, {
-      headers: {
-        Authorization: accessToken
-      },
-      method: 'POST'
-    })
+  
+    const fetchResponse = await fetch( monitoredUrlApiEndpoint,
+      {
+          headers: {
+              "Authorization": accessToken
+          },
+          body: JSON.stringify( { url: fullUrl } ),
+          method: "POST"
+      });
     let response = {} as MonitoredCertificateResponse
 
     // If there's a 200, read the body
@@ -52,16 +55,6 @@ export const MonitorService = {
         console.log(
           'Stored authoritative state in temp browser cookie until Workers KV becomes synchronized'
         )
-
-        // Check cookie value
-        /*
-          const cookieCheckValue = getCookie( "LETSVAL_USER_STATE_CACHE" );
-          if ( cookieCheckValue === null ) {
-              console.log("ERROR: did not retrieve cookie immediately after setting it");
-          } else {
-              console.log("Browser cookie state: " + cookieCheckValue);
-          }
-          */
       } else {
         console.log('WARNING: data coming back from backend infra is not marked authoritative')
       }
@@ -76,8 +69,7 @@ export const MonitorService = {
   },
   async getMonitoredCerts(): Promise<MonitoredCertificateResponse> {
     let response = {} as MonitoredCertificateResponse
-    const getMonitoredCertsEndpoint =
-      'https://letsvalidate-webui-api.publicntp.workers.dev/api/v001/monitored-certificates'
+
 
     const fetchResponse = await fetch(getMonitoredCertsEndpoint, {
       headers: { Authorization: 'Bearer ' + AuthService.getAccessToken() },
@@ -202,9 +194,6 @@ export const MonitorService = {
     return response
   }
 }
-
-const monitoredUrlApiEndpoint =
-  'https://wvyfbi1fnf.execute-api.us-east-2.amazonaws.com/api/v001/monitors'
 
 function scrubHostnameOrIp(url: string): string {
   // Strip prefixes we don't allow/need
