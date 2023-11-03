@@ -58,11 +58,11 @@ defineProps<{
 </template>
 
 <script lang="ts">
-import { MonitorService } from '../../services/MonitorService'
+import { MonitorService } from '@/services/MonitorService'
 import type {
   MonitoredCertificateResponse,
   MonitoredCertificate
-} from '../../models/MonitoredCertificates'
+} from '@/models/MonitoredCertificates'
 
 export default {
   data() {

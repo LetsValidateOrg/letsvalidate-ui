@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
-// This no worky
-import { LoginButton } from '../../components/login_button/LoginButton.vue'
 import { AuthService } from '@/services/AuthService'
+import LoginButton from '@/components/login_button/LoginButton.vue'
 
-const loggedIn = AuthService.authStatusLoggedIn()
+const loggedIn = AuthService.authStatusLoggedIn() !== null
 </script>
 
 <template>
@@ -26,16 +25,7 @@ const loggedIn = AuthService.authStatusLoggedIn()
             <RouterLink class="nav-link" to="/about">About</RouterLink>
           </li>
         </ul>
-        <!-- Should be in a component but was giving me issues -->
-        <div v-if="loggedIn" class="ms-4">
-            <button class="btn my-2 btn-primary" type="submit">Sign Out</button>
-        </div>
-        <div v-else class="ms-4 small text-center">
-            <button class="btn my-0 btn-primary" type="submit">Sign In</button>
-            <br>
-            <span>Or </span><RouterLink to="/sign_up">Sign Up</RouterLink>
-        </div>
-        <!-- End Component -->
+        <LoginButton loggedIn/>
       </div>
     </div>
   </nav>
