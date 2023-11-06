@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
-import { AuthService } from '@/services/AuthService'
-import LoginButton from '@/components/login_button/LoginButton.vue'
+import { RouterLink } from "vue-router";
+import { AuthService } from "@/services/AuthService";
+import LoginButton from "@/components/login_button/LoginButton.vue";
 
-const loggedIn = AuthService.authStatusLoggedIn() !== null
+const loggedIn = AuthService.authStatusLoggedIn() !== null;
 </script>
 
 <template>
@@ -25,7 +25,7 @@ const loggedIn = AuthService.authStatusLoggedIn() !== null
             <RouterLink class="nav-link" to="/about">About</RouterLink>
           </li>
         </ul>
-        <LoginButton loggedIn/>
+        <LoginButton loggedIn />
       </div>
     </div>
   </nav>

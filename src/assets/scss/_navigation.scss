@@ -1,20 +1,20 @@
 nav {
-    min-height: 100px;
-    border-bottom: 4px solid $blue;
-    & .btn {
-        background-color: $orange;
-        border-color: $orange;
-        color: #fff;
-    }
-    & .btn:hover {
-        background-color: #fff;
-        border-color: $orange;
-        color: $orange;
-    }
-    & a {
-        color: $blue;
-    }
-    & a:hover {
-        color: $orange;
-    }
+  min-height: 100px;
+  border-bottom: 4px solid $blue;
+  & .btn {
+    background-color: $orange;
+    border-color: $orange;
+    color: #fff;
+  }
+  & .btn:hover {
+    background-color: #fff;
+    border-color: $orange;
+    color: $orange;
+  }
+  & a {
+    color: $blue;
+  }
+  & a:hover {
+    color: $orange;
+  }
 }

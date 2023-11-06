@@ -1,5 +1,3 @@
 <template>
-    <div class="people container">
-        People Page
-    </div>
-  </template>
+  <div class="people container">People Page</div>
+</template>
