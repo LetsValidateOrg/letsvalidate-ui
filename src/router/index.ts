@@ -50,6 +50,16 @@ const router = createRouter({
       name: "history",
       component: () => import("../views/HistoryView.vue"),
     },
+    {
+      path: "/termsofuse",
+      name: "termsofuse",
+      component: () => import("../views/Terms.vue"),
+    },
+    {
+      path: "/privacy",
+      name: "privacy",
+      component: () => import("../views/Privacy.vue"),
+    },
   ],
 });
 export default router;

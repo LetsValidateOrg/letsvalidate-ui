@@ -5,5 +5,12 @@ $orange: #ff6831 !default;
 $secondary: $orange !default;
 $font-family-base: "Poppins", sans-serif;
 
+body {
+    min-height: 100vh;
+}
+
+img {
+    max-width: 100%;
+}
 // Bootstrap and its default variables
 @import "../../../node_modules/bootstrap/scss/bootstrap.scss";

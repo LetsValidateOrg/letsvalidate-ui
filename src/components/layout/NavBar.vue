@@ -10,9 +10,8 @@ const loggedIn = AuthService.authStatusLoggedIn() !== null;
   <nav class="navbar navbar-expand-lg mb-4">
     <div class="container">
       <a class="navbar-brand" href="#">
-        <img src="../../assets/lv-logo.png" width="200" />
+        <img src="../../assets/horizonallogo.svg" width="250" />
       </a>
-
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item mx-2">
@@ -23,6 +22,12 @@ const loggedIn = AuthService.authStatusLoggedIn() !== null;
           </li>
           <li class="nav-item mx-2">
             <RouterLink class="nav-link" to="/about">About</RouterLink>
+          </li>
+          <li class="nav-item mx-2">
+            <RouterLink class="nav-link" to="/people">People</RouterLink>
+          </li>
+          <li class="nav-item mx-2">
+            <RouterLink class="nav-link" to="/history">History</RouterLink>
           </li>
         </ul>
         <LoginButton loggedIn />
