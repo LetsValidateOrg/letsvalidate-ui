@@ -1,5 +1,8 @@
 <template>
   <modal :show="showModal" @close="closeModal">
+    <template v-slot:header>
+      <h2>Add Certificate</h2>
+    </template>
     <template v-slot:body>
       <div class="row d-flex w-100 justify-content-space-between">
         <div class="col">
@@ -27,7 +30,7 @@
     </template>
     <template v-slot:footer>
       <button :disabled="isDisabled" @click="addCert" class="btn btn-primary">
-        Add Certificate
+        Submit
       </button>
     </template>
   </modal>
@@ -85,17 +88,25 @@
             @click="sortCol('last_checked')"
           ></i>
         </th>
-        <th>Actions</th>
+        <th class="text-center">Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="row in sortedCols" :key="`cert-id-${row.monitor_id}`">
-        <td v-html="highlightMatches(row.url)"></td>
-        <td>{{ new Date(row.tls_certificate.cert_expires).toDateString() }}</td>
-        <td>{{ new Date(row.tls_certificate.last_checked).toDateString() }}</td>
-        <td>
+      <tr
+        v-for="row in sortedCols"
+        :key="`cert-id-${row.monitor_id}`"
+        :class="{ highlight: willExpireSoon(row.tls_certificate.cert_expires) }"
+      >
+        <td class="align-middle" v-html="highlightMatches(row.url)"></td>
+        <td class="align-middle">
+          {{ new Date(row.tls_certificate.cert_expires).toDateString() }}
+        </td>
+        <td class="align-middle">
+          {{ new Date(row.tls_certificate.last_checked).toDateString() }}
+        </td>
+        <td class="text-center">
           <button class="btn btn-secondary" @click="removeCert(row.monitor_id)">
-            x
+            Remove
           </button>
         </td>
       </tr>
@@ -131,7 +142,6 @@ export default {
       const isValidURL = this.url.length > 1 && this.url.includes(".");
       return !isValidURL || !this.port;
     },
-
     sortedCols() {
       let rows = this.monitored_response.monitors;
       if (this.filter.length) {
@@ -187,6 +197,10 @@ export default {
       const re = new RegExp(this.filter, "ig");
       return text.replace(re, (matchedText) => `<mark>${matchedText}</mark>`);
     },
+    willExpireSoon(date: string): boolean {
+      const futureTimestamp = new Date().getTime() + 30 * 24 * 60 * 60 * 1000;
+      return futureTimestamp >= new Date(date).getTime();
+    },
     closeModal() {
       this.showModal = false;
     },
@@ -205,5 +219,8 @@ export default {
 mark,
 .mark {
   padding: 0;
+}
+.highlight td {
+  background-color: #ff6831;
 }
 </style>

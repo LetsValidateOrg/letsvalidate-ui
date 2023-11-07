@@ -6,7 +6,7 @@
   >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header border-0 d-flex justify-content-end">
+        <div class="modal-header border-0 d-flex justify-space-between">
           <slot name="header"></slot>
           <button
             type="button"
