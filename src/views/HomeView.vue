@@ -10,14 +10,12 @@
       </div>
     </div>
     <div class="row">
-      <div class="home-cta my-3 py-4 bg-secondary">
-        <a href="/signin">
-          [CTA GOES HERE]
-        </a>
+      <div class="home-cta">
+        <button class="btn my-0 btn-primary" type="submit">Get Started Today</button>
       </div>
     </div>
     <div class="row my-2">
-      <div class="col-7 mt-4">
+      <div class="col-6 mt-4">
         <h3>Never get caught with an invalid website certificate again</h3>
         <p>Let's Validate alerts you to expired, soon-to-expire, and invalid site certificates.  Valid certificates show as [valid state].  Certificates that require attention show as [invalid state].</p>
         <br/>
@@ -28,7 +26,7 @@
           <li>7 days or less until expiration - daily</li>
         </ul>
       </div>
-      <div class="col-5">
+      <div class="col-6">
         <img src="../assets/work-risk-free.svg">
       </div>
     </div>

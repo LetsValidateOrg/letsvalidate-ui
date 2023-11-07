@@ -7,10 +7,23 @@ $font-family-base: "Poppins", sans-serif;
 
 body {
     min-height: 100vh;
+    & .btn {
+        background-color: $blue;
+        border-color: $blue;
+        color: #fff;
+      }
+    & .btn:hover {
+        background-color: #fff;
+        border-color: $blue;
+        color: $blue;
+    }
 }
 
 img {
     max-width: 100%;
 }
+
+
+
 // Bootstrap and its default variables
 @import "../../../node_modules/bootstrap/scss/bootstrap.scss";
