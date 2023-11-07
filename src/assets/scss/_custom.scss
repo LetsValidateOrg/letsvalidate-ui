@@ -23,7 +23,10 @@ img {
     max-width: 100%;
 }
 
-
+//height of the navbar and footer
+main.container{
+    min-height: calc(100vh - 272px);
+}
 
 // Bootstrap and its default variables
 @import "../../../node_modules/bootstrap/scss/bootstrap.scss";

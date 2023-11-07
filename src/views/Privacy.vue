@@ -1,5 +1,5 @@
 <template>
-    <div class="privacy container">
+    <main class="privacy container">
         <div class="row">
             <div class="col">
                 <h1>Privacy Policy</h1>
@@ -11,6 +11,6 @@
                 <p>Donec lacus nunc, viverra nec, blandit vel, egestas et, augue. Vestibulum tincidunt malesuada tellus. Ut ultrices ultrices enim. Curabitur sit amet mauris. Morbi in dui quis est pulvinar ullamcorper. Nulla facilisi. Integer lacinia sollicitudin massa. Cras metus. Sed aliquet risus a tortor. Integer id quam. Morbi mi. Quisque nisl felis, venenatis tristique, dignissim in, ultrices sit amet, augue. Proin sodales libero eget ante. </p>
             </div>
         </div>
-    </div>
+    </main>
   </template>
   

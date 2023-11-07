@@ -1,5 +1,5 @@
 <template>
-  <div class="home container">
+  <main class="home container">
     <div class="row">
       <div class="col">
         <h1>Automated Website Certificate Validation</h1>
@@ -30,7 +30,7 @@
         <img src="../assets/work-risk-free.svg">
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 
