@@ -6,26 +6,26 @@ $secondary: $orange !default;
 $font-family-base: "Poppins", sans-serif;
 
 body {
-    min-height: 100vh;
-    & .btn {
-        background-color: $blue;
-        border-color: $blue;
-        color: #fff;
-      }
-    & .btn:hover {
-        background-color: #fff;
-        border-color: $blue;
-        color: $blue;
-    }
+  min-height: 100vh;
+  & .btn {
+    background-color: $blue;
+    border-color: $blue;
+    color: #fff;
+  }
+  & .btn:hover {
+    background-color: #fff;
+    border-color: $blue;
+    color: $blue;
+  }
 }
 
 img {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 //height of the navbar and footer
-main.container{
-    min-height: calc(100vh - 272px);
+main.container {
+  min-height: calc(100vh - 272px);
 }
 
 // Bootstrap and its default variables
