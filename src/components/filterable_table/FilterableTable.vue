@@ -221,6 +221,6 @@ mark,
   padding: 0;
 }
 .highlight td {
-  background-color: #ff6831;
+  background-color: #fff3cd;
 }
 </style>

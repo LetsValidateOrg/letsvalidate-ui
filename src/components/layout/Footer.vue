@@ -10,9 +10,7 @@ import { RouterLink } from "vue-router";
         <li><RouterLink to="/termsofuse">Terms of Use</RouterLink></li>
         <li><RouterLink to="/privacy">Privacy Policy</RouterLink></li>
         <li>
-          <a href="mailto:contact@letsvalidate.org" target="_blank"
-            >contact@letsvalidate.org</a
-          >
+          <a href="mailto:contact@letsvalidate.org" target="_blank">contact@letsvalidate.org</a>
         </li>
       </ul>
     </div>

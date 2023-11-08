@@ -21,7 +21,7 @@
           calibrating my wristwatch with the atomic time on the University
           central servers. As I became deeply interested in Linux system
           adminstration, it was a near-certainty to find an NTP daemon running
-          on any host I had root privs on.I founded PublicNTP in 2008 based on a
+          on any host I had root privs on.  I founded <a href="https://publicntp.org" target="_blank">PublicNTP</a> in 2008 based on a
           deeply-held belief that highly-accurate time data should be provided
           as an unrestricted public service, open to all systems on the
           Internet.

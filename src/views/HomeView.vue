@@ -10,22 +10,22 @@
           is no longer safe to visit.
         </p>
         <p>
-          Let's Validate is a free, cloud-based online service (SaaS) that
+          Let's Validate is a <span class="text-secondary" data-toggle="tooltip" data-placement="top" title="Yes, Really">free</span>, cloud-based online service (SaaS) that
           provides automated, daily monitoring of website certificate validity.
-          Let's Validate alerts you to expired, soon-to-expire, and invalit site
-          certificate.
+          Let's Validate alerts you to expired, soon-to-expire, and invalid site
+          certificates.
         </p>
       </div>
     </div>
     <div class="row">
       <div class="home-cta">
-        <button class="btn my-0 btn-primary" type="submit">
+        <a :href="cognitoUrl" class="btn my-0 btn-primary">
           Get Started Today
-        </button>
+        </a>
       </div>
     </div>
     <div class="row my-2">
-      <div class="col-6 mt-4">
+      <div class="col-7 mt-4">
         <h3>Never get caught with an invalid website certificate again</h3>
         <p>
           Let's Validate alerts you to expired, soon-to-expire, and invalid site
@@ -43,9 +43,33 @@
           <li>7 days or less until expiration - daily</li>
         </ul>
       </div>
-      <div class="col-6">
+      <div class="col-5">
         <img src="../assets/work-risk-free.svg" />
       </div>
     </div>
   </main>
 </template>
+<script lang="ts">
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+
+import { hostedLoginUrls } from "@/models/HostedUrls";
+const cognitoHostedLoginUrl = hostedLoginUrls[
+  window.location.hostname
+] as string;
+export default {
+  props: {
+    loggedIn: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  data() {
+    return {
+      cognitoUrl: cognitoHostedLoginUrl,
+    };
+  },
+};
+</script>

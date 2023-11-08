@@ -3,9 +3,9 @@
     <a class="btn my-2 btn-primary" :href="cognitoUrl">Sign Out</a>
   </div>
   <div v-else class="ms-4 small text-center">
-    <a class="btn my-0 btn-primary" :href="cognitoUrl">Sign In</a>
+    <a class="btn my-0 btn-primary" :href="cognitoUrl">Sign Up</a>
     <br />
-    <span>Or </span><a :href="cognitoUrl">Sign Up</a>
+    <span>Or </span><a :href="cognitoUrl">Sign In</a>
   </div>
 </template>
 
