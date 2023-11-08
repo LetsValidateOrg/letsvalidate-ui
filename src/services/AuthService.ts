@@ -42,6 +42,6 @@ export const AuthService = {
         );
       }
     }
-    return expireTime !== null && accessToken !== null;
+    return accessToken !== null; //expireTime !== null && accessToken !== null;
   },
 };
