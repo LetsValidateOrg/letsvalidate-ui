@@ -1,5 +1,4 @@
 <template>
-  {{ loggedIn }}
   <div v-if="loggedIn" class="ms-4">
     <a class="btn my-2 btn-primary" :href="cognitoUrl">Sign Out</a>
   </div>
