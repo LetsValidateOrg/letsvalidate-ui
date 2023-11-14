@@ -1,6 +1,6 @@
 <template>
   <div v-if="loggedIn" class="ms-4">
-    <a class="btn my-2 btn-primary" :href="cognitoUrl">Sign Out</a>
+    <a class="btn my-2 btn-primary" href="/">Sign Out</a>
   </div>
   <div v-else class="ms-4 small text-center">
     <a class="btn my-0 btn-primary" :href="cognitoUrl">Sign Up</a>

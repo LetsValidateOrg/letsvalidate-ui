@@ -10,7 +10,7 @@
           is no longer safe to visit.
         </p>
         <p>
-          Let's Validate is a <span class="text-secondary" data-toggle="tooltip" data-placement="top" title="Yes, Really">free</span>, cloud-based online service (SaaS) that
+          Let's Validate is a <span class="text-secondary" data-toggle="tooltip" data-placement="top" title="Free as in beer">free</span>, cloud-based online service (SaaS) that
           provides automated, daily monitoring of website certificate validity.
           Let's Validate alerts you to expired, soon-to-expire, and invalid site
           certificates.
@@ -35,7 +35,7 @@
         <br />
         <h3>Get Notified before your certificate expires</h3>
         <p>
-          Let's Validate will warn you with increasing frequency as a
+          Let's Validate will <span class="text-secondary" data-toggle="tooltip" data-placement="top" title="Via Email">warn you</span> with increasing frequency as a
           certificate reaches certain milestones:
         </p>
         <ul>
