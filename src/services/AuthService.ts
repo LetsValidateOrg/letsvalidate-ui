@@ -1,3 +1,8 @@
+import { hostedLoginUrls } from "@/models/HostedUrls";
+export const CognitoHostedLoginUrl = hostedLoginUrls[
+  window.location.hostname
+] as string;
+
 export const AuthService = {
   getCookie(cookieName: string): any {
     const name = cookieName + "=";
@@ -14,6 +19,19 @@ export const AuthService = {
     }
     return null;
   },
+  deleteCookie( name:string, value:string | null ): void {
+    // Set expiration to the dawn of time AKA 1970
+    // this clears out the cookie
+    if( this.getCookie( name ) ) {
+      document.cookie = `${name}=${value}; expires = Thu, 01 Jan 1970 00:00:00 GMT`
+    }
+  },
+  signOut(){
+    const accessToken = this.getCookie("LETSVAL_ACCESS_TOKEN");
+    const expireTime = this.getCookie("LETSVAL_TOKEN_EXPIRATION");
+    
+    window.location.href = CognitoHostedLoginUrl;
+  },
   getAccessToken(): string | null {
     return this.getCookie("LETSVAL_ACCESS_TOKEN");
   },
@@ -21,27 +39,17 @@ export const AuthService = {
     const accessToken = this.getAccessToken();
     const expireTime = this.getCookie("LETSVAL_TOKEN_EXPIRATION");
 
-    //Only refresh the token if the user has an expiration cookie set
     if (expireTime !== null) {
       const currentDate = new Date();
-      const secondsDelta = expireTime
-        ? (new Date(expireTime).getTime() - currentDate.getTime()) / 1000
-        : 0;
+      const timeLeft = new Date(expireTime).getTime() - currentDate.getTime();
 
-      // If we are within 10 minutes of expiration, go ahead and use the
-      //      refresh token to go another token
-      const tenMinutesInSeconds = 60 * 10;
-      if (secondsDelta < tenMinutesInSeconds) {
-        console.log(
-          "TODO: Need to refresh token, we're close to expired or expired",
-        );
-      } else {
-        const minutesRemaining = Math.trunc(secondsDelta / 60);
-        console.log(
-          "Access token still valid for " + minutesRemaining + " minutes",
-        );
+      //TODO Replace logic with refresh logic in future
+      if (timeLeft && timeLeft <= 0) {
+        this.deleteCookie("LETSVAL_TOKEN_EXPIRATION", expireTime)
+        this.deleteCookie("LETSVAL_ACCESS_TOKEN", accessToken)
+        return false
       }
     }
-    return accessToken !== null; //expireTime !== null && accessToken !== null;
+    return accessToken !== null;
   },
 };

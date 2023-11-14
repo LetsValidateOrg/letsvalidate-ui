@@ -1,15 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import { AuthService } from "../services/AuthService";
-import { hostedLoginUrls } from "../models/HostedUrls";
+import { AuthService,  CognitoHostedLoginUrl} from "../services/AuthService";
 
 // Redirect users to cognito url if it's a guarded url and they aren't logged in
 function getAuthStatus() {
-  const cognitoHostedLoginUrl = hostedLoginUrls[
-    window.location.hostname
-  ] as string;
   if (!AuthService.authStatusLoggedIn()) {
-    window.location.href = cognitoHostedLoginUrl;
+    window.location.href = CognitoHostedLoginUrl;
     return false;
   }
 }
