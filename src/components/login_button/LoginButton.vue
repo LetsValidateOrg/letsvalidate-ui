@@ -1,19 +1,16 @@
 <template>
   <div v-if="loggedIn" class="ms-4">
-    <a class="btn my-2 btn-primary" href="/">Sign Out</a>
+    <button class="btn my-2 btn-primary" @click="signOut">Sign Out</button>
   </div>
   <div v-else class="ms-4 small text-center">
-    <a class="btn my-0 btn-primary" :href="cognitoUrl">Sign Up</a>
+    <button class="btn my-0 btn-primary" @click="signOut">Sign Up</button>
     <br />
-    <span>Or </span><a :href="cognitoUrl">Sign In</a>
+    <span>Or </span><a @click="signOut">Sign In</a>
   </div>
 </template>
 
 <script lang="ts">
-import { hostedLoginUrls } from "@/models/HostedUrls";
-const cognitoHostedLoginUrl = hostedLoginUrls[
-  window.location.hostname
-] as string;
+import { AuthService } from '@/services/AuthService';
 export default {
   props: {
     loggedIn: {
@@ -21,10 +18,10 @@ export default {
       default: false,
     },
   },
-  data() {
-    return {
-      cognitoUrl: cognitoHostedLoginUrl,
-    };
-  },
+  methods: {
+    signOut () {
+      AuthService.signOut()
+    }
+  }
 };
 </script>
