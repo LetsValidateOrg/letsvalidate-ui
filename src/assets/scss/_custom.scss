@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+$blue: #002c6b !default;
+$orange: #ff6831 !default;
+$secondary: $orange !default;
+$font-family-base: "Poppins", sans-serif;
+
+body {
+  min-height: 100vh;
+  & .btn {
+    background-color: $blue;
+    border-color: $blue;
+    color: #fff;
+  }
+  & .btn:hover {
+    background-color: #fff;
+    border-color: $blue;
+    color: $blue;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+//height of the navbar and footer
+main.container {
+  min-height: calc(100vh - 272px);
+}
+
+// Bootstrap and its default variables
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";

@@ -1,0 +1,16 @@
+footer {
+  padding: 10px 0;
+  background-color: $blue;
+  margin-top: auto;
+
+  & a {
+    color: white;
+    text-decoration: none;
+  }
+  & a:hover {
+    color: $orange;
+  }
+  & ul {
+    list-style-type: none;
+  }
+}
