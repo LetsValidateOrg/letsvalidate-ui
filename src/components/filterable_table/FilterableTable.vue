@@ -1,38 +1,34 @@
 <template>
-  <modal :show="showModal" @close="closeModal">
-    <template v-slot:header>
-      <h2>Add Certificate</h2>
-    </template>
-    <template v-slot:body>
-      <div class="row d-flex w-100 justify-content-space-between">
-        <div class="col">
-          <label for="url">Hostname/IP Address:</label>
-        </div>
-        <div class="col">
-          <input v-model="url" class="form-control" type="text" id="url" />
-        </div>
-      </div>
+    <modal :show="showModal" @close="closeModal">
+        <template v-slot:header>
+              <h2>Add Certificate</h2>
+</template>
 
-      <div class="row d-flex w-100 justify-content-space-between mt-4">
+<template v-slot:body>
+    <div class="row d-flex w-100 justify-content-space-between">
         <div class="col">
-          <label for="port">Port:</label>
+            <label for="url">Hostname/IP Address:</label>
         </div>
         <div class="col">
-          <input
-            v-model="port"
-            class="form-control"
-            id="port"
-            type="number"
-            maxlength="5"
-          />
+            <input v-model="url" class="form-control" type="text" id="url" />
         </div>
-      </div>
-    </template>
-    <template v-slot:footer>
-      <button :disabled="isDisabled" @click="addCert" class="btn btn-primary">
-        Submit
-      </button>
-    </template>
+    </div>
+    
+    <div class="row d-flex w-100 justify-content-space-between mt-4">
+        <div class="col">
+            <label for="port">Port:</label>
+        </div>
+        <div class="col">
+            <input v-model="port" class="form-control" id="port" type="number" maxlength="5" />
+        </div>
+    </div>
+</template>
+
+<template v-slot:footer>
+    <button :disabled="isDisabled" @click="addCert" class="btn btn-primary">
+                Submit
+              </button>
+</template>
   </modal>
 
   <div class="row mt-4">
@@ -118,109 +114,111 @@
 import Modal from "@/components/modal/Modal.vue";
 import { MonitorService } from "@/services/MonitorService";
 import type {
-  MonitoredCertificateResponse,
-  MonitoredCertificate,
+    MonitoredCertificateResponse,
+    MonitoredCertificate,
+    TLSCertificate,
 } from "@/models/MonitorCertificates";
 
 export default {
-  components: {
-    Modal,
-  },
-  data() {
-    return {
-      showModal: false,
-      filter: "",
-      url: "",
-      col: "",
-      asc: false,
-      port: 443,
-      monitored_response: {} as MonitoredCertificateResponse,
-    };
-  },
-  computed: {
-    isDisabled() {
-      const isValidURL = this.url.length > 1 && this.url.includes(".");
-      return !isValidURL || !this.port;
+    components: {
+        Modal,
     },
-    sortedCols() {
-      let rows = this.monitored_response.monitors;
-      if (this.filter.length) {
-        rows = this.getFiltered();
-      }
-      if (!this.col.length) {
-        return rows;
-      }
-      return rows.sort((a: MonitoredCertificate, b: MonitoredCertificate) => {
-        return this.asc
-          ? new Date(a.tls_certificate[this.col]).getTime() -
-              new Date(b.tls_certificate[this.col]).getTime()
-          : new Date(b.tls_certificate[this.col]).getTime() -
-              new Date(a.tls_certificate[this.col]).getTime();
-      });
+    data() {
+        return {
+            showModal: false,
+            filter: "",
+            url: "",
+            col: "",
+            asc: false,
+            port: 443,
+            monitored_response: {} as MonitoredCertificateResponse,
+        };
     },
-  },
-  methods: {
-    async addCert() {
-      const certs = await MonitorService.addNewMonitorUrl(this.url, this.port);
-      this.url = "";
-      if (certs !== null) {
-        this.monitored_response = certs;
-
-        this.showModal = false;
-      }
-    },
-    async removeCert(monitor_id: string) {
-      const certs = await MonitorService.removeMonitor(monitor_id);
-      if (certs !== null) {
-        this.monitored_response = certs;
-      }
-    },
-    sortCol(col: string) {
-      this.asc = this.col === col && !this.asc;
-      this.col = col;
-    },
-    getFiltered() {
-      return this.monitored_response.monitors.filter(
-        (row: MonitoredCertificate) => {
-          const url = row.url.toLowerCase();
-          return url.includes(this.filter);
+    computed: {
+        isDisabled() {
+            const isValidURL = this.url.length > 1 && this.url.includes(".");
+            return !isValidURL || !this.port;
         },
-      );
+        sortedCols() {
+            let rows = this.monitored_response.monitors;
+            if (this.filter.length) {
+                rows = this.getFiltered();
+            }
+            if (!this.col.length) {
+                return rows;
+            }
+            return rows.sort((a: MonitoredCertificate, b: MonitoredCertificate) => {
+                return this.asc ?
+                    new Date((a.tls_certificate as any)[this.col]).getTime() -
+                    new Date((b.tls_certificate as any)[this.col]).getTime() :
+                    new Date((b.tls_certificate as any)[this.col]).getTime() -
+                    new Date((a.tls_certificate as any)[this.col]).getTime();
+            });
+        },
     },
-    highlightMatches(text: string) {
-      if (!text) return;
-      const matchExists = text
-        .toLowerCase()
-        .includes(this.filter.toLowerCase());
-      if (!matchExists || !this.filter) return text;
+    methods: {
+        async addCert() {
+            const certs = await MonitorService.addNewMonitorUrl(this.url, this.port);
+            this.url = "";
+            if (certs !== null) {
+                this.monitored_response = certs;
 
-      const re = new RegExp(this.filter, "ig");
-      return text.replace(re, (matchedText) => `<mark>${matchedText}</mark>`);
+                this.showModal = false;
+            }
+        },
+        async removeCert(monitor_id: string) {
+            const certs = await MonitorService.removeMonitor(monitor_id);
+            if (certs !== null) {
+                this.monitored_response = certs;
+            }
+        },
+        sortCol(col: string) {
+            this.asc = this.col === col && !this.asc;
+            this.col = col;
+        },
+        getFiltered() {
+            return this.monitored_response.monitors.filter(
+                (row: MonitoredCertificate) => {
+                    const url = row.url.toLowerCase();
+                    return url.includes(this.filter);
+                },
+            );
+        },
+        highlightMatches(text: string) {
+            if (!text) return;
+            const matchExists = text
+                .toLowerCase()
+                .includes(this.filter.toLowerCase());
+            if (!matchExists || !this.filter) return text;
+
+            const re = new RegExp(this.filter, "ig");
+            return text.replace(re, (matchedText) => `<mark>${matchedText}</mark>`);
+        },
+        willExpireSoon(date: string): boolean {
+            const futureTimestamp = new Date().getTime() + 30 * 24 * 60 * 60 * 1000;
+            return futureTimestamp >= new Date(date).getTime();
+        },
+        closeModal() {
+            this.showModal = false;
+        },
+        openModal() {
+            this.showModal = true;
+        },
     },
-    willExpireSoon(date: string): boolean {
-      const futureTimestamp = new Date().getTime() + 30 * 24 * 60 * 60 * 1000;
-      return futureTimestamp >= new Date(date).getTime();
+    async mounted() {
+        const certs = await MonitorService.getMonitoredCerts();
+        this.monitored_response = certs;
     },
-    closeModal() {
-      this.showModal = false;
-    },
-    openModal() {
-      this.showModal = true;
-    },
-  },
-  async mounted() {
-    const certs = await MonitorService.getMonitoredCerts();
-    this.monitored_response = certs;
-  },
 };
 </script>
 
 <style>
 mark,
 .mark {
-  padding: 0;
+    padding: 0;
 }
+
 .highlight td {
-  background-color: #fff3cd;
+    background-color: #fff3cd;
 }
 </style>
