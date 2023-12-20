@@ -3,6 +3,7 @@ export const CognitoHostedLoginUrl = hostedLoginUrls[
   window.location.hostname
 ] as string;
 
+
 export const AuthService = {
   getCookie(cookieName: string): any {
     const name = cookieName + "=";
@@ -36,6 +37,7 @@ export const AuthService = {
     return this.getCookie("LETSVAL_ACCESS_TOKEN");
   },
   authStatusLoggedIn(): boolean {
+    this.processUrlParams();
     const accessToken = this.getAccessToken();
     const expireTime = this.getCookie("LETSVAL_TOKEN_EXPIRATION");
 
@@ -52,4 +54,34 @@ export const AuthService = {
     }
     return accessToken !== null;
   },
+
+  processAuthTokens( accessToken: string | null, refreshToken: string | null, accessTokenExpiration: string | null) {
+    // Set browser cookies
+    document.cookie = "LETSVAL_ACCESS_TOKEN=" + accessToken;
+    document.cookie = "LETSVAL_REFRESH_TOKEN=" + refreshToken;
+    document.cookie = "LETSVAL_TOKEN_EXPIRATION=" + accessTokenExpiration;
+  },
+
+  cleanUpUrl() {
+      // Get everything to the left of the first question mark
+      const cleanUrl = window.location.href.substring(0, window.location.href.indexOf('?'));
+
+      // Overwrite the URL to remove all the code stuff
+      history.replaceState(null, '', cleanUrl)
+  },
+  processUrlParams (){
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    const hasAccessToken    = urlParams.has( "access_token" );
+    const hasRefreshToken   = urlParams.has( "refresh_token" );
+    const hasExpirationDate = urlParams.has( "access_token_expiration" );
+
+    if ( hasAccessToken && hasRefreshToken && hasExpirationDate ) {
+        this.processAuthTokens( 
+            urlParams.get("access_token"),
+            urlParams.get("refresh_token"), 
+            urlParams.get("access_token_expiration") );
+    }
+  }
 };
