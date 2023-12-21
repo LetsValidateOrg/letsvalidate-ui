@@ -233,6 +233,12 @@ mark,
   width: 22px;
   height: 18px;
 }
+
+#search.form-control{
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
 .loading-dual-ring:after {
   content: " ";
   display: block;
@@ -244,6 +250,7 @@ mark,
   border-color: #fff transparent #fff transparent;
   animation: loading-dual-ring 1.2s linear infinite;
 }
+
 @keyframes loading-dual-ring {
   0% {
     transform: rotate(0deg);
