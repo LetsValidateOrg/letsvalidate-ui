@@ -31,8 +31,9 @@ export const AuthService = {
   signOut(){
     const accessToken = this.getCookie("LETSVAL_ACCESS_TOKEN");
     const expireTime = this.getCookie("LETSVAL_TOKEN_EXPIRATION");
-    
-    window.location.href = CognitoHostedLoginUrl;
+    this.deleteCookie("LETSVAL_ACCESS_TOKEN", accessToken)
+    this.deleteCookie("LETSVAL_TOKEN_EXPIRATION", expireTime)
+    window.location.href = '/';
   },
   getAccessToken(): string | null {
     return this.getCookie("LETSVAL_ACCESS_TOKEN");
