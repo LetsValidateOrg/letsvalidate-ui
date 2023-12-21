@@ -10,7 +10,7 @@
             <label for="url">Hostname/IP Address:</label>
         </div>
         <div class="col">
-            <input v-model="url" class="form-control" type="text" id="url" />
+            <input v-model="url" :disabled="addingSite" class="form-control" type="text" id="url" />
         </div>
     </div>
     
@@ -19,14 +19,15 @@
             <label for="port">Port:</label>
         </div>
         <div class="col">
-            <input v-model="port" class="form-control" id="port" type="number" maxlength="5" />
+            <input v-model="port" :disabled="addingSite" class="form-control" id="port" type="number" maxlength="5" />
         </div>
     </div>
 </template>
 
 <template v-slot:footer>
     <button :disabled="isDisabled" @click="addCert" class="btn btn-primary">
-                Submit
+                <span v-if="!addingSite">Submit</span> 
+                <div v-else class="loading-dual-ring"></div>
               </button>
 </template>
   </modal>
@@ -101,7 +102,7 @@
           {{ new Date(row.tls_certificate.last_checked).toDateString() }}
         </td>
         <td class="text-center">
-          <button class="btn btn-secondary" @click="removeCert(row.monitor_id)">
+          <button class="btn btn-secondary" @click="removeCert(row.monitor_id)" :disabled="(disabledCol === row.monitor_id)">
             Remove
           </button>
         </td>
@@ -115,8 +116,7 @@ import Modal from "@/components/modal/Modal.vue";
 import { MonitorService } from "@/services/MonitorService";
 import type {
     MonitoredCertificateResponse,
-    MonitoredCertificate,
-    TLSCertificate,
+    MonitoredCertificate
 } from "@/models/MonitorCertificates";
 
 export default {
@@ -131,13 +131,15 @@ export default {
             col: "",
             asc: false,
             port: 443,
+            disabledCol: "",
             monitored_response: {} as MonitoredCertificateResponse,
+            addingSite: false
         };
     },
     computed: {
         isDisabled() {
             const isValidURL = this.url.length > 1 && this.url.includes(".");
-            return !isValidURL || !this.port;
+            return !isValidURL || !this.port || this.addingSite;
         },
         sortedCols() {
             let rows = this.monitored_response.monitors;
@@ -158,18 +160,21 @@ export default {
     },
     methods: {
         async addCert() {
+            this.addingSite = true
             const certs = await MonitorService.addNewMonitorUrl(this.url, this.port);
             this.url = "";
             if (certs !== null) {
                 this.monitored_response = certs;
-
+                this.addingSite = false
                 this.showModal = false;
             }
         },
         async removeCert(monitor_id: string) {
+            this.disabledCol = monitor_id
             const certs = await MonitorService.removeMonitor(monitor_id);
             if (certs !== null) {
                 this.monitored_response = certs;
+                this.disabledCol = ""
             }
         },
         sortCol(col: string) {
@@ -220,5 +225,30 @@ mark,
 
 .highlight td {
     background-color: #fff3cd;
+}
+
+.loading-dual-ring {
+  display: inline-block;
+  width: 22px;
+  height: 18px;
+}
+.loading-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 18px;
+  height: 18px;
+  margin: 2px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: loading-dual-ring 1.2s linear infinite;
+}
+@keyframes loading-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
