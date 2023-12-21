@@ -22,6 +22,7 @@ const router = createRouter({
       path: "/dashboard",
       name: "dashboard",
       component: () => import("../views/DashboardView.vue"),
+      beforeEnter:() => getAuthStatus()
     },
     {
       path: "/about",
@@ -55,4 +56,8 @@ const router = createRouter({
     },
   ],
 });
+// remove the route
+router.afterEach(to => {
+  if(to.query.length){router.replace(to.path)}
+})
 export default router;

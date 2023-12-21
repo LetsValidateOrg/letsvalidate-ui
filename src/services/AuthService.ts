@@ -1,4 +1,5 @@
 import { hostedLoginUrls } from "@/models/HostedUrls";
+
 export const CognitoHostedLoginUrl = hostedLoginUrls[
   window.location.hostname
 ] as string;
@@ -60,14 +61,6 @@ export const AuthService = {
     document.cookie = "LETSVAL_ACCESS_TOKEN=" + accessToken;
     document.cookie = "LETSVAL_REFRESH_TOKEN=" + refreshToken;
     document.cookie = "LETSVAL_TOKEN_EXPIRATION=" + accessTokenExpiration;
-  },
-
-  cleanUpUrl() {
-      // Get everything to the left of the first question mark
-      const cleanUrl = window.location.href.substring(0, window.location.href.indexOf('?'));
-
-      // Overwrite the URL to remove all the code stuff
-      history.replaceState(null, '', cleanUrl)
   },
   processUrlParams (){
     const queryString = window.location.search;
