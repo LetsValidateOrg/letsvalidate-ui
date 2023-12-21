@@ -103,7 +103,8 @@
         </td>
         <td class="text-center">
           <button class="btn btn-secondary" @click="removeCert(row.monitor_id)" :disabled="(disabledCol === row.monitor_id)">
-            Remove
+            <span v-if="(disabledCol !== row.monitor_id)">Remove</span> 
+            <div v-else class="loading-dual-ring"></div>
           </button>
         </td>
       </tr>
