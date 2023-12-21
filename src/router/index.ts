@@ -58,6 +58,6 @@ const router = createRouter({
 });
 // remove the params
 router.afterEach(to => {
-  history.pushState({}, null, to.path);
+  history.pushState({}, "", to.path);
 })
 export default router;
