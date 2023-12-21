@@ -5,7 +5,7 @@
   <div v-else class="ms-4 small text-center">
     <button class="btn my-0 btn-primary" @click="signIn">Sign Up</button>
     <br />
-    <span>Or </span><a @click="signIn">Sign In</a>
+    <span style="cursor: pointer;">Or </span><a @click="signIn" style="cursor: pointer;">Sign In</a>
   </div>
 </template>
 

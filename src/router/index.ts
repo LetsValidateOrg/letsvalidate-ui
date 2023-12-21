@@ -56,8 +56,8 @@ const router = createRouter({
     },
   ],
 });
-// remove the route
+// remove the params
 router.afterEach(to => {
-  if(to.query.length){router.replace(to.path)}
+  history.pushState({}, null, to.path);
 })
 export default router;
